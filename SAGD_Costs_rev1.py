@@ -1,4 +1,4 @@
-from bokeh.plotting import figure, show, curdoc
+from bokeh.plotting import figure, curdoc
 from bokeh.models import NumeralTickFormatter
 from bokeh.models import HoverTool
 from bokeh.models import ColumnDataSource
@@ -96,15 +96,15 @@ p.ygrid.grid_line_color = None
 
 
 # Set up widgets
-eng_slider = Slider(start=0, end=150000000,
+eng_slider = Slider(start=0, end=500000000,
                     value=40000000, step=5000000, title="Engineering $")
-equip_slider = Slider(start=100000000, end=400000000,
+equip_slider = Slider(start=0, end=500000000,
                       value=300000000, step=5000000, title="Equipment $")
-bulk_slider = Slider(start=100000000, end=400000000,
+bulk_slider = Slider(start=0, end=500000000,
                      value=250000000, step=5000000, title="Bulk_Materials $")
-indi_slider = Slider(start=10000000, end=310000000,
+indi_slider = Slider(start=0, end=500000000,
                      value=160000000, step=5000000, title="Indirects $")
-lab_slider = Slider(start=100000000, end=400000000,
+lab_slider = Slider(start=0, end=500000000,
                     value=250000000, step=5000000, title="Labour $")
 time_select = Select(title="Years To First Steam:", value='3',
                      options=['2.5', '3', '4'])
@@ -241,20 +241,20 @@ T.ygrid.grid_line_color = 'whitesmoke'
 
 # Set up widgets
 oil_slider = Slider(start=20, end=100,
-                    value=45, step=5, title="Oil Price $/bbl")
-fuel_slider = Slider(start=0, end=10,
+                    value=45, step=1, title="Oil Price $/bbl")
+fuel_slider = Slider(start=0, end=20,
                      value=3, step=1, title="Fuel Cost $/bbl")
-opp_slider = Slider(start=1, end=20,
+opp_slider = Slider(start=0, end=20,
                     value=10, step=1, title="Operating Cost $/bbl")
-sust_slider = Slider(start=1, end=20,
+sust_slider = Slider(start=0, end=20,
                      value=8, step=1, title="Sustaining Capital Cost $/bbl")
 roy_slider = Slider(start=0, end=20,
                     value=7, step=1, title="Royalties $/bbl")
-tax_slider = Slider(start=0, end=10,
+tax_slider = Slider(start=0, end=20,
                     value=2.8, step=0.2, title="Taxes $/bbl")
-emiss_slider = Slider(start=0, end=10,
+emiss_slider = Slider(start=0, end=20,
                       value=0.3, step=0.1, title="Emission Compliance $/bbl")
-tran_slider = Slider(start=0, end=10,
+tran_slider = Slider(start=0, end=20,
                      value=6, step=1, title="Transport Cost $/bbl")
 oth_slider = Slider(start=0, end=20,
                     value=1, step=1, title="Other Cost $/bbl")
@@ -272,20 +272,24 @@ npvval = round(np.npv(0.10, [y0, y1, y2, y3, y4, y5, y6, y7, y8, y9, y10, y11,
                       y23, y24, y25, y26, y27, y28, y29,
                       y30]), 0)
 capexperbbl = et / 40000
+
 irr = figure(title="IRR", title_location="above", plot_width=400,
              plot_height=400, x_range=(0, 3), y_range=(0, 3))
 
 
-label = Label(x=0.25, y=1.25, text='IRR: {:.1%}' .format(irrval),
-              text_font_size='50pt', text_color='teal')
-label2 = Label(x=0.25, y=0.25, text='NPV: {:}' .format(npvval),
-               text_font_size='50pt', text_color='teal')
-label3 = Label(x=0.25, y=2.25, text='$/bbl: {:}' .format(capexperbbl),
-               text_font_size='50pt', text_color='teal')
+label = Label(x=0.25, y=1.00, text='IRR: {:.1%}' .format(irrval),
+              text_font_size='25pt', text_color='teal')
+label2 = Label(x=0.25, y=0.25, text='NPV: {:.0f}' .format(npvval),
+               text_font_size='25pt', text_color='teal')
+label3 = Label(x=0.25, y=1.75, text='$/bbl: {:,.0f}' .format(capexperbbl),
+               text_font_size='25pt', text_color='teal')
+label4 = Label(x=0.25, y=2.50, text='CAPEX $: {:,}' .format(et),
+               text_font_size='25pt', text_color='teal')
 
 irr.add_layout(label)
 irr.add_layout(label2)
 irr.add_layout(label3)
+irr.add_layout(label4)
 
 irr.xgrid.grid_line_color = None
 irr.ygrid.grid_line_color = None
@@ -445,9 +449,10 @@ def update_data(attrname, old, new):
                           y12, y13, y14, y15, y16, y17, y18, y19, y20, y21, y22,
                           y23, y24, y25, y26, y27, y28, y29,
                           y30]), 0)
-    label2.text = 'NPV: {:}' .format(npvval)
+    label2.text = 'NPV: {:.0f}' .format(npvval)
     capexperbbl = et / 40000
-    label3.text = '$/bbl: {:}' .format(capexperbbl)
+    label3.text = '$/bbl: {:,.0f}' .format(capexperbbl)
+    label4.text = 'CAPEX $: {:,}' .format(et)
 
 
 for w in [eng_slider, equip_slider, bulk_slider, indi_slider, lab_slider,
