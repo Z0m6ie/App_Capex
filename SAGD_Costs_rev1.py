@@ -120,14 +120,14 @@ Fuel = 3
 Opp_Cost = 10
 Sus_Cap = 8
 Royalties = 7
-Taxes = 2.8
+Taxes = 3.8
 Emission_Comp = 0.3
 Transport = 6
-Other = 1
+#Other = 1
 Uptime = 0.95
 Construction_time = 3
 Net = Uptime * (365 * (40000 * (Oil_Price - (Fuel + Opp_Cost +
-                                             Sus_Cap + Royalties + Taxes + Emission_Comp + Transport + Other))))
+                                             Sus_Cap + Royalties + Taxes + Emission_Comp + Transport))))
 Year = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15,
         16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30]
 
@@ -252,13 +252,13 @@ sust_slider = Slider(start=0, end=20,
 roy_slider = Slider(start=0, end=20,
                     value=7, step=1, title="Royalties $/bbl")
 tax_slider = Slider(start=0, end=20,
-                    value=2.8, step=0.2, title="Taxes $/bbl")
+                    value=3.8, step=0.2, title="Taxes & Other Costs $/bbl")
 emiss_slider = Slider(start=0, end=20,
                       value=0.3, step=0.1, title="Emission Compliance $/bbl")
 tran_slider = Slider(start=0, end=20,
                      value=6, step=1, title="Transport Cost $/bbl")
-oth_slider = Slider(start=0, end=20,
-                    value=1, step=1, title="Other Cost $/bbl")
+#oth_slider = Slider(start=0, end=20,
+                    #value=1, step=1, title="Other Cost $/bbl")
 upt_slider = Slider(start=0, end=1,
                     value=0.95, step=0.01, title="Uptime")
 
@@ -301,8 +301,10 @@ irr.background_fill_color = "aliceblue"
 
 # Intro Para
 ####################################
-div = Div(text="""<h1 style="text-align: center;"><strong><span style="color: #333333;">CAPEX &amp; OPEX Dashboard</span></strong></h1>
-<h2><span style="color: #333333;">move the sliders to investigate what effect the CAPEX and OPEX have on the project rate of return. For a full list of references and assumption please see the following link.</span></h2><a href="https://github.com/Z0m6ie/App_Capex/new/master?readme=1">References</a>.""")
+#Text
+div = Div(text="""<h1 style="text-align: left;"><strong><span style="color: #333333;"><img src="http://www.snclavalin.com/en/files/images/SNC-Logo_Desktop.png" alt="Logo" width="107" height="47" /></span></strong></h1>
+<h1 style="text-align: left;"><span style="text-decoration: underline;"><strong><span style="color: #333333; text-decoration: underline;">CAPEX &amp; OPEX Dashboard</span></strong></span></h1>
+<h2><span style="color: #333333;">Move the sliders to investigate the effects of CAPEX and OPEX on the projects rate of return. For a full list of references and assumption please see the following link.&nbsp;<a title="Link to References" href="https://github.com/Z0m6ie/App_Capex/new/master?readme=1" target="_blank">References</a></span></h2>""", width=400, height=300)
 
 
 
@@ -329,12 +331,12 @@ def update_data(attrname, old, new):
     Taxes = tax_slider.value
     Emission_Comp = emiss_slider.value
     Transport = tran_slider.value
-    Other = oth_slider.value
+    #Other = oth_slider.value
     Uptime = upt_slider.value
     Construction_time_str = time_select.value
     Construction_time = float(Construction_time_str)
     Net = Uptime * (365 * (40000 * (Oil_Price - (Fuel + Opp_Cost +
-                                                 Sus_Cap + Royalties + Taxes + Emission_Comp + Transport + Other))))
+                                                 Sus_Cap + Royalties + Taxes + Emission_Comp + Transport))))
     Year = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15,
             16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30]
 
@@ -466,26 +468,29 @@ def update_data(attrname, old, new):
 
 for w in [eng_slider, equip_slider, bulk_slider, indi_slider, lab_slider,
           oil_slider, fuel_slider, opp_slider, sust_slider, roy_slider,
-          tax_slider, emiss_slider, tran_slider, oth_slider, upt_slider,
+          tax_slider, emiss_slider, tran_slider, upt_slider,
           time_select]:
     w.on_change('value', update_data)
 
 #  CAPEX Set up layouts and add to document
-inputs = widgetbox(time_select, eng_slider, equip_slider,
-                   bulk_slider, indi_slider, lab_slider)
+inputs = widgetbox(eng_slider, equip_slider,
+                   bulk_slider, indi_slider, lab_slider,
+                   sizing_mode='stretch_both')
 
 
 # PAYBACK Set up layouts and add to document
 Tinputs1 = widgetbox(oil_slider, fuel_slider,
-                     opp_slider, sust_slider, roy_slider)
+                     opp_slider, sust_slider, roy_slider,
+                     sizing_mode='stretch_both')
 
-Tinputs2 = widgetbox(tax_slider, emiss_slider,
-                     tran_slider, oth_slider, upt_slider)
+Tinputs2 = widgetbox(time_select, upt_slider, tax_slider, emiss_slider,
+                     tran_slider, sizing_mode='stretch_both')
+
 para = widgetbox(div)
 
 l = layout([
-           [p, irr],
            [para, inputs, Tinputs1, Tinputs2],
+           [p, irr],
            [T],
            ], sizing_mode='stretch_both')
 
