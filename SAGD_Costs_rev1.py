@@ -6,6 +6,7 @@ from bokeh.layouts import widgetbox
 from bokeh.models import BoxAnnotation
 from bokeh.layouts import layout
 from bokeh.models import Slider, Label, Select
+from bokeh.models.widgets import Div
 import numpy as np
 
 # CAPEX GRAPH
@@ -297,6 +298,14 @@ irr.xaxis.visible = False
 irr.yaxis.visible = False
 irr.background_fill_color = "aliceblue"
 
+
+# Intro Para
+####################################
+div = Div(text="""<h1 style="text-align: center;"><strong><span style="color: #333333;">CAPEX &amp; OPEX Dashboard</span></strong></h1>
+<h2><span style="color: #333333;">move the sliders to investigate what effect the CAPEX and OPEX have on the project rate of return. For a full list of references and assumption please see the following link.</span></h2><a href="https://github.com/Z0m6ie/App_Capex/new/master?readme=1">References</a>.""")
+
+
+
 # UPDATE FUNCTION
 ####################################
 def update_data(attrname, old, new):
@@ -472,10 +481,11 @@ Tinputs1 = widgetbox(oil_slider, fuel_slider,
 
 Tinputs2 = widgetbox(tax_slider, emiss_slider,
                      tran_slider, oth_slider, upt_slider)
+para = widgetbox(div)
 
 l = layout([
            [p, irr],
-           [inputs, Tinputs1, Tinputs2],
+           [para, inputs, Tinputs1, Tinputs2],
            [T],
            ], sizing_mode='stretch_both')
 
