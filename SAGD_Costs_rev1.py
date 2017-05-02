@@ -8,6 +8,8 @@ from bokeh.layouts import layout
 from bokeh.models import Slider, Label, Select
 from bokeh.models.widgets import Div
 import numpy as np
+import pandas as pd
+import pandas_datareader.data as web
 
 # CAPEX GRAPH
 ####################################
@@ -115,7 +117,11 @@ time_select = Select(title="Years To First Steam:", value='3',
 
 
 # Data
+facilitysz = 40000
+Exchange = web.get_quote_yahoo('CAD=X')
+Exchangert = Exchange['last'][0]
 Oil_Price = 45
+Oil_Price_CAD = Oil_Price * Exchangert
 Fuel = 3
 Opp_Cost = 10
 Sus_Cap = 8
@@ -126,7 +132,7 @@ Transport = 6
 #Other = 1
 Uptime = 0.95
 Construction_time = 3
-Net = Uptime * (365 * (40000 * (Oil_Price - (Fuel + Opp_Cost +
+Net = Uptime * (365 * (facilitysz * (Oil_Price_CAD - (Fuel + Opp_Cost +
                                              Sus_Cap + Royalties + Taxes + Emission_Comp + Transport))))
 Year = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15,
         16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30]
@@ -242,7 +248,7 @@ T.ygrid.grid_line_color = 'whitesmoke'
 
 # Set up widgets
 oil_slider = Slider(start=20, end=100,
-                    value=45, step=1, title="Oil Price $/bbl")
+                    value=45, step=1, title="WTI Oil Price US$/bbl")
 fuel_slider = Slider(start=0, end=20,
                      value=3, step=1, title="Fuel Cost $/bbl")
 opp_slider = Slider(start=0, end=20,
@@ -261,6 +267,8 @@ tran_slider = Slider(start=0, end=20,
                     #value=1, step=1, title="Other Cost $/bbl")
 upt_slider = Slider(start=0, end=1,
                     value=0.95, step=0.01, title="Uptime")
+facil_slider = Slider(start=0, end=100000,
+                      value=40000, step=500, title="Facility Size bbl/d")
 
 # IRR GRAPH
 ####################################
@@ -272,7 +280,7 @@ npvval = round(np.npv(0.10, [y0, y1, y2, y3, y4, y5, y6, y7, y8, y9, y10, y11,
                       y12, y13, y14, y15, y16, y17, y18, y19, y20, y21, y22,
                       y23, y24, y25, y26, y27, y28, y29,
                       y30]), 0)
-capexperbbl = et / 40000
+capexperbbl = et / facilitysz
 
 irr = figure(title="IRR", title_location="above", plot_width=400,
              plot_height=400, x_range=(0, 3), y_range=(0, 3))
@@ -280,7 +288,7 @@ irr = figure(title="IRR", title_location="above", plot_width=400,
 
 label = Label(x=0.25, y=1.00, text='IRR: {:.1%}' .format(irrval),
               text_font_size='25pt', text_color='teal')
-label2 = Label(x=0.25, y=0.25, text='NPV: {:.0f}' .format(npvval),
+label2 = Label(x=0.25, y=0.25, text='NPV: {:,.0f}' .format(npvval),
                text_font_size='25pt', text_color='teal')
 label3 = Label(x=0.25, y=1.75, text='$/bbl: {:,.0f}' .format(capexperbbl),
                text_font_size='25pt', text_color='teal')
@@ -324,6 +332,7 @@ def update_data(attrname, old, new):
     ################################
     # Data - Get current slider value
     Oil_Price = oil_slider.value
+    Oil_Price_CAD = Oil_Price * Exchangert
     Fuel = fuel_slider.value
     Opp_Cost = opp_slider.value
     Sus_Cap = sust_slider.value
@@ -333,9 +342,10 @@ def update_data(attrname, old, new):
     Transport = tran_slider.value
     #Other = oth_slider.value
     Uptime = upt_slider.value
+    facilitysz = facil_slider.value
     Construction_time_str = time_select.value
     Construction_time = float(Construction_time_str)
-    Net = Uptime * (365 * (40000 * (Oil_Price - (Fuel + Opp_Cost +
+    Net = Uptime * (365 * (facilitysz * (Oil_Price_CAD - (Fuel + Opp_Cost +
                                                  Sus_Cap + Royalties + Taxes + Emission_Comp + Transport))))
     Year = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15,
             16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30]
@@ -343,18 +353,18 @@ def update_data(attrname, old, new):
     if Construction_time == 2.5:
         # Calculate Top & Bottom
         ab = 0
-        at = a*0.75
-        bt = (a*0.75) + b
-        ct = (a*0.75) + b + c
-        dt = ((a*0.75) + b + c + (d*0.8))
-        et = ((a*0.75) + b + c + (d*0.8) + (e*0.75))
+        at = a
+        bt = (a) + b
+        ct = (a) + b + c
+        dt = ((a) + b + c + (d))
+        et = ((a) + b + c + (d) + (e))
     elif Construction_time == 4:
         ab = 0
-        at = a*1.25
-        bt = (a*1.25) + b
-        ct = (a*1.25) + b + c
-        dt = ((a*1.25) + b + c + (d*1.25))
-        et = ((a*1.25) + b + c + (d*1.25) + (e*1.25))
+        at = a
+        bt = (a) + b
+        ct = (a) + b + c
+        dt = ((a) + b + c + (d))
+        et = ((a) + b + c + (d) + (e))
     else:
         ab = 0
         at = a
@@ -362,6 +372,29 @@ def update_data(attrname, old, new):
         ct = a + b + c
         dt = a + b + c + d
         et = a + b + c + d + e
+
+    # if Construction_time == 2.5:
+    #     # Calculate Top & Bottom
+    #     ab = 0
+    #     at = a*0.75
+    #     bt = (a*0.75) + b
+    #     ct = (a*0.75) + b + c
+    #     dt = ((a*0.75) + b + c + (d*0.8))
+    #     et = ((a*0.75) + b + c + (d*0.8) + (e*0.75))
+    # elif Construction_time == 4:
+    #     ab = 0
+    #     at = a*1.25
+    #     bt = (a*1.25) + b
+    #     ct = (a*1.25) + b + c
+    #     dt = ((a*1.25) + b + c + (d*1.25))
+    #     et = ((a*1.25) + b + c + (d*1.25) + (e*1.25))
+    # else:
+    #     ab = 0
+    #     at = a
+    #     bt = a + b
+    #     ct = a + b + c
+    #     dt = a + b + c + d
+    #     et = a + b + c + d + e
     # New sources
     engsource.data = dict(x=[ab], y=[at], desc=['Engineering'], info=[at])
     equipsource.data = dict(x=[at], y=[bt], desc=['Equipment'], info=[bt-at])
@@ -460,20 +493,20 @@ def update_data(attrname, old, new):
                           y12, y13, y14, y15, y16, y17, y18, y19, y20, y21, y22,
                           y23, y24, y25, y26, y27, y28, y29,
                           y30]), 0)
-    label2.text = 'NPV: {:.0f}' .format(npvval)
-    capexperbbl = et / 40000
+    label2.text = 'NPV: {:,.0f}' .format(npvval)
+    capexperbbl = et / facilitysz
     label3.text = '$/bbl: {:,.0f}' .format(capexperbbl)
     label4.text = 'CAPEX $: {:,}' .format(et)
 
 
 for w in [eng_slider, equip_slider, bulk_slider, indi_slider, lab_slider,
           oil_slider, fuel_slider, opp_slider, sust_slider, roy_slider,
-          tax_slider, emiss_slider, tran_slider, upt_slider,
+          tax_slider, emiss_slider, tran_slider, upt_slider, facil_slider,
           time_select]:
     w.on_change('value', update_data)
 
 #  CAPEX Set up layouts and add to document
-inputs = widgetbox(eng_slider, equip_slider,
+inputs = widgetbox(facil_slider, eng_slider, equip_slider,
                    bulk_slider, indi_slider, lab_slider,
                    sizing_mode='stretch_both')
 
