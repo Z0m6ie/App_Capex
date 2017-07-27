@@ -11,6 +11,7 @@ import numpy as np
 import pandas as pd
 import pandas_datareader.data as web
 
+
 # CAPEX GRAPH
 ####################################
 # Get the current slider values
@@ -118,18 +119,19 @@ time_select = Select(title="Years To First Steam:", value='3',
 
 # Data
 facilitysz = 40000
-Exchange = web.get_quote_yahoo('CAD=X')
-Exchangert = Exchange['last'][0]
-Oil_Price = 45
-Oil_Price_CAD = Oil_Price * Exchangert
+# Exchange = web.get_quote_yahoo('CAD=X')
+# Exchangert = Exchange['last'][0]
+Oil_Price = 40
+# Oil_Price_CAD = Oil_Price * Exchangert
+Oil_Price_CAD = Oil_Price
 Fuel = 3
 Opp_Cost = 10
-Sus_Cap = 8
-Royalties = 7
+Sus_Cap = 4
+Royalties = 5
 Taxes = 3.8
 Emission_Comp = 0.3
-Transport = 6
-#Other = 1
+Transport = 5
+# Other = 1
 Uptime = 0.95
 Construction_time = 3
 Net = Uptime * (365 * (facilitysz * (Oil_Price_CAD - (Fuel + Opp_Cost +
@@ -248,21 +250,21 @@ T.ygrid.grid_line_color = 'whitesmoke'
 
 # Set up widgets
 oil_slider = Slider(start=20, end=100,
-                    value=45, step=1, title="WTI Oil Price US$/bbl")
+                    value=40, step=1, title="Realized Bitumen Price CAD/bbl")
 fuel_slider = Slider(start=0, end=20,
                      value=3, step=1, title="Fuel Cost $/bbl")
 opp_slider = Slider(start=0, end=20,
                     value=10, step=1, title="Operating Cost $/bbl")
 sust_slider = Slider(start=0, end=20,
-                     value=8, step=1, title="Sustaining Capital Cost $/bbl")
+                     value=4, step=1, title="Sustaining Capital Cost $/bbl")
 roy_slider = Slider(start=0, end=20,
-                    value=7, step=1, title="Royalties $/bbl")
+                    value=5, step=1, title="Royalties $/bbl")
 tax_slider = Slider(start=0, end=20,
                     value=3.8, step=0.2, title="Taxes & Other Costs $/bbl")
 emiss_slider = Slider(start=0, end=20,
                       value=0.3, step=0.1, title="Emission Compliance $/bbl")
 tran_slider = Slider(start=0, end=20,
-                     value=6, step=1, title="Transport Cost $/bbl")
+                     value=5, step=1, title="Transport Cost $/bbl")
 #oth_slider = Slider(start=0, end=20,
                     #value=1, step=1, title="Other Cost $/bbl")
 upt_slider = Slider(start=0, end=1,
