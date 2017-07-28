@@ -527,7 +527,7 @@ l = layout([
            [para, inputs, Tinputs1, Tinputs2],
            [p, irr],
            [T],
-           ], sizing_mode='scale_both')
+           ], sizing_mode='stretch_both')
 
 
 # Show!
