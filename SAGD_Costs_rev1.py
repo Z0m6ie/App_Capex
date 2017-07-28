@@ -333,8 +333,8 @@ def update_data(attrname, old, new):
     # opex function
     ################################
     # Data - Get current slider value
-    Oil_Price = oil_slider.value
-    Oil_Price_CAD = Oil_Price * Exchangert
+    Oil_Price_CAD = oil_slider.value
+    #Oil_Price_CAD = Oil_Price * Exchangert
     Fuel = fuel_slider.value
     Opp_Cost = opp_slider.value
     Sus_Cap = sust_slider.value
