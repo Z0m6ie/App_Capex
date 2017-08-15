@@ -145,15 +145,15 @@ if Construction_time == 3:
     # Return Calculation
     y0 = -et / 2
     y1 = -et / 2
-    y2 = Net /*0.75
+    y2 = Net * 0.75
     y3 = Net
     y4 = Net
     y5 = Net
 elif Construction_time == 4:
     y0 = -et / 2
     y1 = -et / 2
-    y2 = Net /*0.25
-    y3 = Net /*0.75
+    y2 = Net * 0.25
+    y3 = Net * 0.75
     y4 = Net
     y5 = Net
 elif Construction_time == 2.5:
@@ -410,15 +410,15 @@ def update_data(attrname, old, new):
         # Return Calculation
         y0 = -et / 2
         y1 = -et / 2
-        y2 = Net / * 0.75
+        y2 = Net * 0.75
         y3 = Net
         y4 = Net
         y5 = Net
     elif Construction_time == 4:
         y0 = -et / 2
         y1 = -et / 2
-        y2 = Net / * 0.25
-        y3 = Net / * 0.75
+        y2 = Net * 0.25
+        y3 = Net * 0.75
         y4 = Net
         y5 = Net
     elif Construction_time == 2.5:
