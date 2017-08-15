@@ -16,15 +16,15 @@ import pandas_datareader.data as web
 ####################################
 # Get the current slider values
 # Engineering
-a = 40000000
+a = 115000000
 # Equipment
-b = 300000000
+b = 445000000
 # Bulk Materials
-c = 250000000
+c = 255000000
 # Indirects
-d = 160000000
+d = 365000000
 # Labour
-e = 250000000
+e = 300000000
 
 # Calculate Top & Bottom
 ab = 0
@@ -101,15 +101,15 @@ p.ygrid.grid_line_color = None
 
 # Set up widgets
 eng_slider = Slider(start=0, end=500000000,
-                    value=40000000, step=5000000, title="Engineering $")
+                    value=115000000, step=5000000, title="Engineering $")
 equip_slider = Slider(start=0, end=500000000,
-                      value=300000000, step=5000000, title="Equipment $")
+                      value=445000000, step=5000000, title="Equipment $")
 bulk_slider = Slider(start=0, end=500000000,
-                     value=250000000, step=5000000, title="Bulk_Materials $")
+                     value=255000000, step=5000000, title="Bulk_Materials $")
 indi_slider = Slider(start=0, end=500000000,
-                     value=160000000, step=5000000, title="Indirects $")
+                     value=365000000, step=5000000, title="Indirects $")
 lab_slider = Slider(start=0, end=500000000,
-                    value=250000000, step=5000000, title="Labour $")
+                    value=300000000, step=5000000, title="Labour $")
 time_select = Select(title="Years To First Steam:", value='3',
                      options=['2.5', '3', '4'])
 
@@ -121,16 +121,16 @@ time_select = Select(title="Years To First Steam:", value='3',
 facilitysz = 40000
 # Exchange = web.get_quote_yahoo('CAD=X')
 # Exchangert = Exchange['last'][0]
-Oil_Price = 40
+Oil_Price = 60
 # Oil_Price_CAD = Oil_Price * Exchangert
 Oil_Price_CAD = Oil_Price
-Fuel = 3
+Fuel = 4
 Opp_Cost = 10
 Sus_Cap = 4
-Royalties = 5
+Royalties = 2
 Taxes = 3.8
 Emission_Comp = 0.3
-Transport = 5
+Transport = 7
 # Other = 1
 Uptime = 0.95
 Construction_time = 3
@@ -143,24 +143,24 @@ Year = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15,
 con_var = Construction_time - 1
 if Construction_time == 3:
     # Return Calculation
-    y0 = -at
-    y1 = -et / con_var
-    y2 = -et / con_var
-    y3 = Net / 2
+    y0 = -et / 2
+    y1 = -et / 2
+    y2 = Net /*0.75
+    y3 = Net
     y4 = Net
     y5 = Net
 elif Construction_time == 4:
-    y0 = -at
-    y1 = -et / con_var
-    y2 = -et / con_var
-    y3 = -et / con_var
-    y4 = Net / 2
+    y0 = -et / 2
+    y1 = -et / 2
+    y2 = Net /*0.25
+    y3 = Net /*0.75
+    y4 = Net
     y5 = Net
 elif Construction_time == 2.5:
-    y0 = (-at) + (-et / 3)
-    y1 = -et / 3
-    y2 = (-et / 3) + (Net / 3)
-    y3 = Net / 1.15
+    y0 = -et / 2
+    y1 = -et / 2
+    y2 = Net
+    y3 = Net
     y4 = Net
     y5 = Net
 
@@ -408,24 +408,24 @@ def update_data(attrname, old, new):
     con_var = Construction_time - 1
     if Construction_time == 3:
         # Return Calculation
-        y0 = -at
-        y1 = -et / con_var
-        y2 = -et / con_var
-        y3 = Net / 2
+        y0 = -et / 2
+        y1 = -et / 2
+        y2 = Net / * 0.75
+        y3 = Net
         y4 = Net
         y5 = Net
     elif Construction_time == 4:
-        y0 = -at
-        y1 = -et / con_var
-        y2 = -et / con_var
-        y3 = -et / con_var
-        y4 = Net / 2
+        y0 = -et / 2
+        y1 = -et / 2
+        y2 = Net / * 0.25
+        y3 = Net / * 0.75
+        y4 = Net
         y5 = Net
     elif Construction_time == 2.5:
-        y0 = (-at) + (-et / 3)
-        y1 = -et / 3
-        y2 = (-et / 3) + (Net / 3)
-        y3 = Net / 1.15
+        y0 = -et / 2
+        y1 = -et / 2
+        y2 = Net
+        y3 = Net
         y4 = Net
         y5 = Net
 
