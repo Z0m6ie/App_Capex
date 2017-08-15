@@ -250,21 +250,21 @@ T.ygrid.grid_line_color = 'whitesmoke'
 
 # Set up widgets
 oil_slider = Slider(start=20, end=100,
-                    value=40, step=1, title="Realized Bitumen Price CAD/bbl")
+                    value=60, step=1, title="Realized Bitumen Price CAD/bbl")
 fuel_slider = Slider(start=0, end=20,
-                     value=3, step=1, title="Fuel Cost $/bbl")
+                     value=4, step=1, title="Fuel Cost $/bbl")
 opp_slider = Slider(start=0, end=20,
                     value=10, step=1, title="Operating Cost $/bbl")
 sust_slider = Slider(start=0, end=20,
                      value=4, step=1, title="Sustaining Capital Cost $/bbl")
 roy_slider = Slider(start=0, end=20,
-                    value=5, step=1, title="Royalties $/bbl")
+                    value=2, step=1, title="Royalties $/bbl")
 tax_slider = Slider(start=0, end=20,
                     value=3.8, step=0.2, title="Taxes & Other Costs $/bbl")
 emiss_slider = Slider(start=0, end=20,
                       value=0.3, step=0.1, title="Emission Compliance $/bbl")
 tran_slider = Slider(start=0, end=20,
-                     value=5, step=1, title="Transport Cost $/bbl")
+                     value=7, step=1, title="Transport Cost $/bbl")
 #oth_slider = Slider(start=0, end=20,
                     #value=1, step=1, title="Other Cost $/bbl")
 upt_slider = Slider(start=0, end=1,
