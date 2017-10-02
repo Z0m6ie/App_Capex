@@ -121,7 +121,7 @@ time_select = Select(title="Years To First Steam:", value='3',
 facilitysz = 40000
 # Exchange = web.get_quote_yahoo('CAD=X')
 # Exchangert = Exchange['last'][0]
-Oil_Price = 60
+Oil_Price = 40
 # Oil_Price_CAD = Oil_Price * Exchangert
 Oil_Price_CAD = Oil_Price
 Fuel = 4
@@ -250,7 +250,7 @@ T.ygrid.grid_line_color = 'whitesmoke'
 
 # Set up widgets
 oil_slider = Slider(start=20, end=100,
-                    value=60, step=1, title="Realized Bitumen Price CAD/bbl")
+                    value=40, step=1, title="Realized Bitumen Price CAD/bbl")
 fuel_slider = Slider(start=0, end=20,
                      value=4, step=1, title="Fuel Cost $/bbl")
 opp_slider = Slider(start=0, end=20,
