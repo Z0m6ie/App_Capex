@@ -514,24 +514,24 @@ for w in [eng_slider, equip_slider, bulk_slider, indi_slider, lab_slider,
 #  CAPEX Set up layouts and add to document
 inputs = widgetbox(facil_slider, eng_slider, equip_slider,
                    bulk_slider, indi_slider, lab_slider,
-                   sizing_mode='stretch_both')
+                   sizing_mode='scale_width')
 
 
 # PAYBACK Set up layouts and add to document
 Tinputs1 = widgetbox(oil_slider, fuel_slider,
                      opp_slider, sust_slider, roy_slider,
-                     sizing_mode='stretch_both')
+                     sizing_mode='scale_width')
 
 Tinputs2 = widgetbox(time_select, upt_slider, tax_slider, emiss_slider,
-                     tran_slider, sizing_mode='stretch_both')
+                     tran_slider, sizing_mode='scale_width')
 
-para = widgetbox(div)
+para = widgetbox(div, sizing_mode='scale_width')
 
 l = layout([
            [para, inputs, Tinputs1, Tinputs2],
            [p, irr],
            [T],
-           ], sizing_mode='stretch_both')
+           ], sizing_mode='scale_width')
 
 
 # Show!
