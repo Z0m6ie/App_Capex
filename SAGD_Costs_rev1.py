@@ -67,7 +67,7 @@ TOOLS = 'box_zoom, box_select, resize, reset'
 
 # Figure
 p = figure(title="Capital Costs Breakdown", title_location="above",
-           plot_width=50, plot_height=50, x_range=(-2, 2),
+           plot_width=100, plot_height=100, x_range=(-2, 2),
            tools=[TOOLS, phover])
 
 
