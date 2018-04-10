@@ -523,7 +523,7 @@ Tinputs1 = widgetbox(oil_slider, fuel_slider,
                      width=200)
 
 Tinputs2 = widgetbox(time_select, upt_slider, tax_slider, emiss_slider,
-                     width=200')
+                     width=200)
 
 para = widgetbox(div, sizing_mode='scale_width')
 
