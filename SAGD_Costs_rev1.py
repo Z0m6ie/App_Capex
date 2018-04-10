@@ -315,7 +315,7 @@ irr.background_fill_color = "aliceblue"
 div = Div(text="""<h3 style="text-align: left;"><strong><span style="color: #333333;">David Peabody</span></strong></span></h3>
 <h1 style="text-align: left;"><span style="text-decoration: underline;"><strong><span style="color: #333333; text-decoration: underline;">CAPEX &amp; OPEX Dashboard</span></strong></span></h1>
 <h2><span style="color: #333333;">Move the sliders to investigate the effects of CAPEX and OPEX on the projects rate of return. For a full list of references and assumption please see the following link.&nbsp;<a title="Link to References" href="https://github.com/Z0m6ie/App_Capex/tree/master" target="_blank">References</a></span></h2>
-<h5><span style="color: #333333;">To buy the developer a well deserved coffee please click the following link.&nbsp;<a title="paypal" href="https://www.paypal.me/DPeabody63" target="_blank">paypal</a></span></h5>""", width=400, height=300)
+<h5><span style="color: #333333;">To buy the developer a well deserved coffee please click the following link.&nbsp;<a title="paypal" href="https://www.paypal.me/DPeabody63" target="_blank">paypal</a></span></h5>""", sizing_mode='scale_width')
 # div = Div(text="""<h1 style="text-align: left;"><strong><span style="color: #333333;"><img src="http://www.snclavalin.com/en/files/images/SNC-Logo_Desktop.png" alt="Logo" width="107" height="47" /></span></strong></h1>
 # <h1 style="text-align: left;"><span style="text-decoration: underline;"><strong><span style="color: #333333; text-decoration: underline;">CAPEX &amp; OPEX Dashboard</span></strong></span></h1>
 # <h2><span style="color: #333333;">Move the sliders to investigate the effects of CAPEX and OPEX on the projects rate of return. For a full list of references and assumption please see the following link.&nbsp;<a title="Link to References" href="https://github.com/Z0m6ie/App_Capex/tree/master" target="_blank">References</a></span></h2>""", width=400, height=300)
@@ -514,16 +514,16 @@ for w in [eng_slider, equip_slider, bulk_slider, indi_slider, lab_slider,
 #  CAPEX Set up layouts and add to document
 inputs = widgetbox(facil_slider, eng_slider, equip_slider,
                    bulk_slider, indi_slider, lab_slider,
-                   sizing_mode='scale_width')
+                   width=200)
 
 
 # PAYBACK Set up layouts and add to document
 Tinputs1 = widgetbox(oil_slider, fuel_slider,
                      opp_slider, sust_slider, roy_slider,
-                     sizing_mode='scale_width')
+                     width=200)
 
 Tinputs2 = widgetbox(time_select, upt_slider, tax_slider, emiss_slider,
-                     tran_slider, sizing_mode='scale_width')
+                     width=200')
 
 para = widgetbox(div, sizing_mode='scale_width')
 
