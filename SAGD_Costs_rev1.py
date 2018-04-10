@@ -67,7 +67,7 @@ TOOLS = 'box_zoom, box_select, resize, reset'
 
 # Figure
 p = figure(title="Capital Costs Breakdown", title_location="above",
-           plot_width=400, plot_height=400, x_range=(-2, 2),
+           plot_width=300, plot_height=300, x_range=(-2, 2),
            tools=[TOOLS, phover])
 
 
@@ -235,7 +235,7 @@ TOOLS = 'box_zoom, box_select, resize, reset'
 
 # Plot
 T = figure(title="Return On Investment", title_location="above",
-           plot_width=800, plot_height=400, tools=[TOOLS, Thover])
+           plot_width=300, plot_height=300, tools=[TOOLS, Thover])
 T.line(x='x', y='y', color="teal", line_width=4,
        alpha=0.75, source=returnsource)
 
