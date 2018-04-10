@@ -67,7 +67,7 @@ TOOLS = 'box_zoom, box_select, resize, reset'
 
 # Figure
 p = figure(title="Capital Costs Breakdown", title_location="above",
-           plot_width=100, plot_height=100, x_range=(-2, 2),
+           plot_width=200, plot_height=200, x_range=(-2, 2),
            tools=[TOOLS, phover])
 
 
@@ -235,7 +235,7 @@ TOOLS = 'box_zoom, box_select, resize, reset'
 
 # Plot
 T = figure(title="Return On Investment", title_location="above",
-           plot_width=100, plot_height=50, tools=[TOOLS, Thover])
+           plot_width=400, plot_height=200, tools=[TOOLS, Thover])
 T.line(x='x', y='y', color="teal", line_width=4,
        alpha=0.75, source=returnsource)
 
@@ -284,8 +284,8 @@ npvval = round(np.npv(0.10, [y0, y1, y2, y3, y4, y5, y6, y7, y8, y9, y10, y11,
                       y30]), 0)
 capexperbbl = et / facilitysz
 
-irr = figure(title="IRR", title_location="above", plot_width=50,
-             plot_height=50, x_range=(0, 3), y_range=(0, 3))
+irr = figure(title="IRR", title_location="above", plot_width=200,
+             plot_height=200, x_range=(0, 3), y_range=(0, 3))
 
 
 label = Label(x=0.25, y=1.00, text='IRR: {:.1%}' .format(irrval),
