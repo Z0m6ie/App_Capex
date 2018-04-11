@@ -246,6 +246,9 @@ T = figure(title="Return On Investment", title_location="above",
            plot_width=400, plot_height=200, tools=[TOOLS, Thover])
 T.line(x='x', y='y', color="teal", line_width=4,
        alpha=0.75, source=returnsource)
+T.vbar(x=0, width=1, bottom=0,
+                top=y0, alpha=0.75, color="darkslategrey",
+                legend="Engineering")
 
 
 # Format
