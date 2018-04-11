@@ -247,14 +247,14 @@ T = figure(title="Return On Investment", title_location="above",
 T.line(x='x', y='y', color="teal", line_width=4,
        alpha=0.75, source=returnsource)
 T.vbar(x=0, width=1, bottom=0,
-                top=abs(y0), alpha=0.9, color="darkslategrey",
-                legend="Year 1 spend")
+       top=abs(y0), alpha=0.9, color="darkslategrey",
+       legend="Year 1 spend")
+T.vbar(x=1, width=1, bottom=0,
+       top=abs(y1), alpha=0.9, color="darkslategrey",
+       legend="Year 2 Spend")
 T.vbar(x=2, width=1, bottom=0,
-                top=abs(y1), alpha=0.9, color="darkslategrey",
-                legend="Year 2 Spend")
-T.vbar(x=3, width=1, bottom=0,
-                top=abs(y2), alpha=0.9, color="darkslategrey",
-                legend="Year 3 Spend")
+       top=abs(y2), alpha=0.9, color="darkslategrey",
+       legend="Year 3 Spend")
 
 
 # Format
