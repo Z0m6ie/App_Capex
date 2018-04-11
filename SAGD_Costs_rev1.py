@@ -7,6 +7,7 @@ from bokeh.models import BoxAnnotation
 from bokeh.layouts import layout
 from bokeh.models import Slider, Label, Select
 from bokeh.models.widgets import Div
+from bokeh.models.widgets import TextInput
 import numpy as np
 import pandas as pd
 import pandas_datareader.data as web
@@ -100,16 +101,17 @@ p.ygrid.grid_line_color = None
 
 
 # Set up widgets
-eng_slider = Slider(start=0, end=500000000,
-                    value=100000000, step=5000000, title="Engineering $")
+# eng_slider = Slider(start=0, end=500000000,
+#                    value=100000000, step=5000000, title="Engineering $", format="$0,000")
+eng_slider = TextInput(value=100000000, title="Engineering $", format="$0,000")
 equip_slider = Slider(start=0, end=500000000,
-                      value=300000000, step=5000000, title="Equipment $")
+                      value=300000000, step=5000000, title="Equipment $", format="$0,000")
 bulk_slider = Slider(start=0, end=500000000,
-                     value=280000000, step=5000000, title="Bulk_Materials $")
+                     value=280000000, step=5000000, title="Bulk_Materials $", format="$0,000")
 indi_slider = Slider(start=0, end=500000000,
-                     value=230000000, step=5000000, title="Indirects $")
+                     value=230000000, step=5000000, title="Indirects $", format="$0,000")
 lab_slider = Slider(start=0, end=500000000,
-                    value=390000000, step=5000000, title="Labour $")
+                    value=390000000, step=5000000, title="Labour $", format="$0,000")
 time_select = Select(title="Years To First Steam:", value='3',
                      options=['2.5', '3', '4'])
 
