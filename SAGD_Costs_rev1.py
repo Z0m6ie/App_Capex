@@ -105,13 +105,13 @@ p.ygrid.grid_line_color = None
 #                    value=100000000, step=5000000, title="Engineering $", format="$0,000")
 eng_slider = TextInput(value="100000000", title="Engineering $")
 equip_slider = Slider(start=0, end=500000000,
-                      value=300000000, step=5000000, title="Equipment $", format="$0,000")
+                      value=300000000, step=5000000, title="Equipment $")
 bulk_slider = Slider(start=0, end=500000000,
-                     value=280000000, step=5000000, title="Bulk_Materials $", format="$0,000")
+                     value=280000000, step=5000000, title="Bulk_Materials $")
 indi_slider = Slider(start=0, end=500000000,
-                     value=230000000, step=5000000, title="Indirects $", format="$0,000")
+                     value=230000000, step=5000000, title="Indirects $")
 lab_slider = Slider(start=0, end=500000000,
-                    value=390000000, step=5000000, title="Labour $", format="$0,000")
+                    value=390000000, step=5000000, title="Labour $")
 time_select = Select(title="Years To First Steam:", value='3',
                      options=['2.5', '3', '4'])
 
