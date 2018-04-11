@@ -103,7 +103,7 @@ p.ygrid.grid_line_color = None
 # Set up widgets
 # eng_slider = Slider(start=0, end=500000000,
 #                    value=100000000, step=5000000, title="Engineering $", format="$0,000")
-eng_slider = TextInput(value=100000000, title="Engineering $", format="$0,000")
+eng_slider = TextInput(value="100000000", title="Engineering $")
 equip_slider = Slider(start=0, end=500000000,
                       value=300000000, step=5000000, title="Equipment $", format="$0,000")
 bulk_slider = Slider(start=0, end=500000000,
@@ -332,6 +332,7 @@ def update_data(attrname, old, new):
 
     # Get the current slider values
     a = eng_slider.value
+    a = float(a)
     b = equip_slider.value
     c = bulk_slider.value
     d = indi_slider.value
