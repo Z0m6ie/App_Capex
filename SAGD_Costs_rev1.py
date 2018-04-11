@@ -101,9 +101,9 @@ p.ygrid.grid_line_color = None
 
 
 # Set up widgets
-# eng_slider = Slider(start=0, end=500000000,
-#                    value=100000000, step=5000000, title="Engineering $", format="$0,000")
-eng_slider = TextInput(value="100000000", title="Engineering $")
+"""
+eng_slider = Slider(start=0, end=500000000,
+                    value=100000000, step=5000000, title="Engineering $", format="$0,000")
 equip_slider = Slider(start=0, end=500000000,
                       value=300000000, step=5000000, title="Equipment $")
 bulk_slider = Slider(start=0, end=500000000,
@@ -112,8 +112,14 @@ indi_slider = Slider(start=0, end=500000000,
                      value=230000000, step=5000000, title="Indirects $")
 lab_slider = Slider(start=0, end=500000000,
                     value=390000000, step=5000000, title="Labour $")
+"""
 time_select = Select(title="Years To First Steam:", value='3',
                      options=['2.5', '3', '4'])
+eng_slider = TextInput(value="100000000", title="Engineering $:")
+equip_slider = TextInput(value="300000000", title="Equipment $:")
+bulk_slider = TextInput(value="280000000", title="Bulk_Materials $:")
+indi_slider = TextInput(value="230000000", title="Indirects $:")
+lab_slider = TextInput(value="390000000", title="Labour $:")
 
 # PAYBACK GRAPH
 ####################################
@@ -334,9 +340,13 @@ def update_data(attrname, old, new):
     a = eng_slider.value
     a = float(a)
     b = equip_slider.value
+    b = float(b)
     c = bulk_slider.value
+    c = float(c)
     d = indi_slider.value
+    d = float(d)
     e = lab_slider.value
+    e = float(e)
     # opex function
     ################################
     # Data - Get current slider value
