@@ -17,15 +17,15 @@ import pandas_datareader.data as web
 ####################################
 # Get the current slider values
 # Engineering
-a = 100000000
+a = 10000000
 # Equipment
-b = 300000000
+b = 100000000
 # Bulk Materials
-c = 280000000
+c = 80000000
 # Indirects
-d = 230000000
+d = 50000000
 # Labour
-e = 390000000
+e = 100000000
 
 # Calculate Top & Bottom
 ab = 0
@@ -294,7 +294,7 @@ tran_slider = Slider(start=0, end=20,
 upt_slider = Slider(start=0, end=1,
                     value=0.95, step=0.01, title="Uptime")
 facil_slider = Slider(start=0, end=100000,
-                      value=40000, step=500, title="Facility Size bbl/d")
+                      value=12000, step=500, title="Facility Size bbl/d")
 
 # IRR GRAPH
 ####################################
