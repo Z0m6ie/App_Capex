@@ -387,6 +387,7 @@ def update_data(attrname, old, new):
                baseyears + (y4*17), baseyears + (y4*18), baseyears + (y4*19),
                baseyears + (y4*20), baseyears + (y4*21), baseyears + (y4*22)]
 
+    capexspend = [-y0, -y0 - y1, -y0 - y1 - y2]
     # New sources
     returnsource.data = dict(x=Year, y=Payback)
     capexspendsource.data = dict(x=Year, y=capexspend)
