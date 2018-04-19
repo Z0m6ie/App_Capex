@@ -201,15 +201,8 @@ T = figure(title="Return On Investment", title_location="above",
            plot_width=400, plot_height=200, tools=[TOOLS, Thover])
 T.line(x='x', y='y', color="teal", line_width=4,
        alpha=0.75, source=returnsource)
-T.vbar(x=0, width=1, bottom=0,
-       top=abs(y0), alpha=0.9, color="darkslategrey",
-       legend="Year 1 spend")
-T.vbar(x=1, width=1, bottom=0,
-       top=abs(y1), alpha=0.9, color="darkslategrey",
-       legend="Year 2 Spend")
-T.vbar(x=2, width=1, bottom=0,
-       top=abs(y2), alpha=0.9, color="darkslategrey",
-       legend="Year 3 Spend")
+T.vbar(x='x', y='y', width=1, bottom=0, color="darkslategrey",
+       alpha=0.75, source=capexspendsource, legend="CAPEX Spend")
 
 
 # Format
