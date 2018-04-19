@@ -170,60 +170,6 @@ elif Construction_time == 2.5:
 
 baseyears = y0 + y1 + y2 + y3
 y4 = Net
-'''
-y5 = Net
-y6 = Net
-y7 = Net
-y8 = Net
-y9 = Net
-y10 = Net
-y11 = Net
-y12 = Net
-y13 = Net
-y14 = Net
-y15 = Net
-y16 = Net
-y17 = Net
-y18 = Net
-y19 = Net
-y20 = Net
-y21 = Net
-y22 = Net
-y23 = Net
-y24 = Net
-y25 = Net
-y26 = Net
-y27 = Net
-y28 = Net
-y29 = Net
-y30 = Net
-# Payback data list
-Payback = [y0, y0 + y1, y0 + y1 + y2, y0 + y1 + y2 + y3, y0 + y1 + y2 + y3 + y4, y0 + y1 + y2 + y3 + y4 + y5, y0 + y1 + y2 + y3 + y4 + y5 + y6,
-           y0 + y1 + y2 + y3 + y4 + y5 + y6 + y7, y0 + y1 + y2 + y3 + y4 + y5 + y6 + y7 + y8, y0 + y1 + y2 + y3 + y4 + y5 + y6 + y7 +
-           y8 + y9, y0 + y1 + y2 + y3 + y4 + y5 + y6 + y7 + y8 + y9 +
-           y10, y0 + y1 + y2 + y3 + y4 + y5 + y6 + y7 + y8 + y9 + y10 + y11,
-           y0 + y1 + y2 + y3 + y4 + y5 + y6 + y7 + y8 + y9 + y10 + y11 + y12, y0 + y1 + y2 + y3 + y4 + y5 + y6 + y7 +
-           y8 + y9 + y10 + y11 + y12 + y13, y0 + y1 + y2 + y3 + y4 +
-           y5 + y6 + y7 + y8 + y9 + y10 + y11 + y12 + y13 + y14,
-           y0 + y1 + y2 + y3 + y4 + y5 + y6 + y7 + y8 + y9 + y10 + y11 + y12 + y13 + y14 + y15, y0 + y1 + y2 + y3 + y4 + y5 + y6 + y7 + y8 + y9 +
-           y10 + y11 + y12 + y13 + y14 + y15 + y16, y0 + y1 + y2 + y3 + y4 + y5 +
-           y6 + y7 + y8 + y9 + y10 + y11 + y12 + y13 + y14 + y15 + y16 + y17,
-           y0 + y1 + y2 + y3 + y4 + y5 + y6 + y7 + y8 + y9 + y10 + y11 + y12 + y13 + y14 + y15 + y16 + y17 + y18, y0 + y1 + y2 + y3 + y4 + y5 + y6 + y7 + y8 + y9 + y10 + y11 +
-           y12 + y13 + y14 + y15 + y16 + y17 + y18 + y19, y0 + y1 + y2 + y3 + y4 + y5 + y6 +
-           y7 + y8 + y9 + y10 + y11 + y12 + y13 + y14 + y15 + y16 + y17 + y18 + y19 + y20,
-           y0 + y1 + y2 + y3 + y4 + y5 + y6 + y7 + y8 + y9 + y10 + y11 + y12 + y13 + y14 + y15 + y16 + y17 + y18 + y19 + y20 + y21, y0 +
-           y1 + y2 + y3 + y4 + y5 + y6 + y7 + y8 + y9 + y10 + y11 + y12 +
-           y13 + y14 + y15 + y16 + y17 + y18 + y19 + y20 + y21 + y22,
-           y0 + y1 + y2 + y3 + y4 + y5 + y6 + y7 + y8 + y9 + y10 + y11 + y12 + y13 + y14 + y15 + y16 + y17 + y18 + y19 + y20 + y21 + y22 + y23, y0 + y1 + y2 + y3 + y4 + y5 + y6 + y7 + y8 + y9 + y10 + y11 + y12 + y13 +
-           y14 + y15 + y16 + y17 + y18 + y19 + y20 + y21 + y22 + y23 + y24, y0 + y1 + y2 + y3 + y4 + y5 + y6 + y7 +
-           y8 + y9 + y10 + y11 + y12 + y13 + y14 + y15 + y16 +
-           y17 + y18 + y19 + y20 + y21 + y22 + y23 + y24 + y25,
-           y0 + y1 + y2 + y3 + y4 + y5 + y6 + y7 + y8 + y9 + y10 + y11 + y12 + y13 + y14 + y15 + y16 + y17 + y18 + y19 + y20 + y21 + y22 + y23 + y24 + y25 + y26, y0 + y1 + y2 + y3 + y4 + y5 + y6 + y7 + y8 + y9 + y10 + y11 + y12 + y13 + y14 + y15 +
-           y16 + y17 + y18 + y19 + y20 + y21 + y22 + y23 + y24 + y25 + y26 + y27, y0 + y1 + y2 + y3 + y4 + y5 + y6 + y7 + y8 +
-           y9 + y10 + y11 + y12 + y13 + y14 + y15 + y16 + y17 + y18 +
-           y19 + y20 + y21 + y22 + y23 + y24 + y25 + y26 + y27 + y28,
-           y0 + y1 + y2 + y3 + y4 + y5 + y6 + y7 + y8 + y9 + y10 + y11 + y12 + y13 + y14 + y15 + y16 + y17 + y18 + y19 + y20 + y21 + y22 + y23 + y24 + y25 + y26 + y27 + y28 + y29, y0 + y1 + y2 + y3 + y4 + y5 + y6 + y7 + y8 + y9 + y10 + y11 + y12 + y13 + y14 + y15 + y16 + y17 + y18 + y19 + y20 + y21 + y22 + y23 + y24 + y25 + y26 + y27 + y28 + y29 + y30]
-'''
 Payback = [y0, y0 + y1, y0 + y1 + y2, baseyears, baseyears + (y4),
            baseyears + (y4*2), baseyears + (y4*3), baseyears + (y4*4),
            baseyears + (y4*5), baseyears + (y4*6), baseyears + (y4*7),
@@ -232,9 +178,11 @@ Payback = [y0, y0 + y1, y0 + y1 + y2, baseyears, baseyears + (y4),
            baseyears + (y4*14), baseyears + (y4*15), baseyears + (y4*16),
            baseyears + (y4*17), baseyears + (y4*18), baseyears + (y4*19),
            baseyears + (y4*20), baseyears + (y4*21), baseyears + (y4*22)]
+
+capexspend = [-y0, -y0 - y1, -y0 - y1 - y2]
 # New sources
 returnsource = ColumnDataSource(dict(x=Year, y=Payback))
-
+capexspendsource = ColumnDataSource(dict(x=Year, y=capexspend))
 
 # HoverTool Label
 Thover = HoverTool(mode='vline',
@@ -406,28 +354,7 @@ def update_data(attrname, old, new):
         dt = a + b + c + d
         et = a + b + c + d + e
 
-    # if Construction_time == 2.5:
-    #     # Calculate Top & Bottom
-    #     ab = 0
-    #     at = a*0.75
-    #     bt = (a*0.75) + b
-    #     ct = (a*0.75) + b + c
-    #     dt = ((a*0.75) + b + c + (d*0.8))
-    #     et = ((a*0.75) + b + c + (d*0.8) + (e*0.75))
-    # elif Construction_time == 4:
-    #     ab = 0
-    #     at = a*1.25
-    #     bt = (a*1.25) + b
-    #     ct = (a*1.25) + b + c
-    #     dt = ((a*1.25) + b + c + (d*1.25))
-    #     et = ((a*1.25) + b + c + (d*1.25) + (e*1.25))
-    # else:
-    #     ab = 0
-    #     at = a
-    #     bt = a + b
-    #     ct = a + b + c
-    #     dt = a + b + c + d
-    #     et = a + b + c + d + e
+
     # New sources
     engsource.data = dict(x=[ab], y=[at], desc=['Engineering'], info=[at])
     equipsource.data = dict(x=[at], y=[bt], desc=['Equipment'], info=[bt-at])
@@ -469,6 +396,7 @@ def update_data(attrname, old, new):
 
     # New sources
     returnsource.data = dict(x=Year, y=Payback)
+    capexspendsource.data = dict(x=Year, y=capexspend)
 
     # IRR Graph Update
     irrval = round(np.irr([y0, y1, y2, y3, y4, y4, y4, y4, y4, y4, y4, y4, y4,
