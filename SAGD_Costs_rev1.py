@@ -201,7 +201,7 @@ T = figure(title="Return On Investment", title_location="above",
            plot_width=400, plot_height=200, tools=[TOOLS, Thover])
 T.line(x='x', y='y', color="teal", line_width=4,
        alpha=0.75, source=returnsource)
-T.vbar(x='x', y='y', width=1, color="darkslategrey",
+T.vbar(x='x', top='y', bottom=0, width=1, color="darkslategrey",
        alpha=0.75, source=capexspendsource, legend="CAPEX Spend")
 
 
