@@ -115,18 +115,18 @@ lab_slider = Slider(start=0, end=500000000,
 """
 time_select = Select(title="Years To First Steam:", value='3',
                      options=['2.5', '3', '4'])
-eng_slider = TextInput(value="100000000", title="Engineering $:")
-equip_slider = TextInput(value="300000000", title="Equipment $:")
-bulk_slider = TextInput(value="280000000", title="Bulk_Materials $:")
-indi_slider = TextInput(value="230000000", title="Indirects $:")
-lab_slider = TextInput(value="390000000", title="Labour $:")
+eng_slider = TextInput(value="10000000", title="Engineering $:")
+equip_slider = TextInput(value="100000000", title="Equipment $:")
+bulk_slider = TextInput(value="80000000", title="Bulk_Materials $:")
+indi_slider = TextInput(value="50000000", title="Indirects $:")
+lab_slider = TextInput(value="100000000", title="Labour $:")
 
 # PAYBACK GRAPH
 ####################################
 
 
 # Data
-facilitysz = 40000
+facilitysz = 12000
 # Exchange = web.get_quote_yahoo('CAD=X')
 # Exchangert = Exchange['last'][0]
 Oil_Price = 45
@@ -145,7 +145,7 @@ Construction_time = 3
 Net = Uptime * (365 * (facilitysz * (Oil_Price_CAD - (Fuel + Opp_Cost +
                                              Sus_Cap + Royalties + Taxes + Emission_Comp + Transport))))
 Year = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15,
-        16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30]
+        16, 17, 18, 19, 20, 21, 22, 23, 24, 25]
 
 # Construction Calc
 con_var = Construction_time - 1
@@ -155,23 +155,23 @@ if Construction_time == 3:
     y1 = -et / 2
     y2 = Net * 0.75
     y3 = Net
-    y4 = Net
-    y5 = Net
+
 elif Construction_time == 4:
     y0 = -et / 2
     y1 = -et / 2
     y2 = Net * 0.25
     y3 = Net * 0.75
-    y4 = Net
-    y5 = Net
+
 elif Construction_time == 2.5:
     y0 = -et / 2
     y1 = -et / 2
     y2 = Net
     y3 = Net
-    y4 = Net
-    y5 = Net
 
+baseyears = y0 + y1 + y2 + y3
+y4 = Net
+'''
+y5 = Net
 y6 = Net
 y7 = Net
 y8 = Net
@@ -223,8 +223,15 @@ Payback = [y0, y0 + y1, y0 + y1 + y2, y0 + y1 + y2 + y3, y0 + y1 + y2 + y3 + y4,
            y9 + y10 + y11 + y12 + y13 + y14 + y15 + y16 + y17 + y18 +
            y19 + y20 + y21 + y22 + y23 + y24 + y25 + y26 + y27 + y28,
            y0 + y1 + y2 + y3 + y4 + y5 + y6 + y7 + y8 + y9 + y10 + y11 + y12 + y13 + y14 + y15 + y16 + y17 + y18 + y19 + y20 + y21 + y22 + y23 + y24 + y25 + y26 + y27 + y28 + y29, y0 + y1 + y2 + y3 + y4 + y5 + y6 + y7 + y8 + y9 + y10 + y11 + y12 + y13 + y14 + y15 + y16 + y17 + y18 + y19 + y20 + y21 + y22 + y23 + y24 + y25 + y26 + y27 + y28 + y29 + y30]
-
-
+'''
+Payback = [y0, y0 + y1, y0 + y1 + y2, baseyears, baseyears + (y4),
+           baseyears + (y4*2), baseyears + (y4*3), baseyears + (y4*4),
+           baseyears + (y4*5), baseyears + (y4*6), baseyears + (y4*7),
+           baseyears + (y4*8), baseyears + (y4*9), baseyears + (y4*10),
+           baseyears + (y4*11), baseyears + (y4*12), baseyears + (y4*13),
+           baseyears + (y4*14), baseyears + (y4*15), baseyears + (y4*16),
+           baseyears + (y4*17), baseyears + (y4*18), baseyears + (y4*19),
+           baseyears + (y4*20), baseyears + (y4*21), baseyears + (y4*22)]
 # New sources
 returnsource = ColumnDataSource(dict(x=Year, y=Payback))
 
@@ -291,14 +298,12 @@ facil_slider = Slider(start=0, end=100000,
 
 # IRR GRAPH
 ####################################
-irrval = round(np.irr([y0, y1, y2, y3, y4, y5, y6, y7, y8, y9, y10, y11, y12,
-                       y13, y14, y15, y16, y17, y18, y19, y20, y21, y22, y23,
-                       y24, y25, y26, y27, y28, y29,
-                       y30]), 3)
-npvval = round(np.npv(0.10, [y0, y1, y2, y3, y4, y5, y6, y7, y8, y9, y10, y11,
-                      y12, y13, y14, y15, y16, y17, y18, y19, y20, y21, y22,
-                      y23, y24, y25, y26, y27, y28, y29,
-                      y30]), 0)
+irrval = round(np.irr([y0, y1, y2, y3, y4, y4, y4, y4, y4, y4, y4, y4, y4,
+                       y4, y4, y4, y4, y4, y4, y4, y4, y4, y4, y4,
+                       y4, y4]), 3)
+npvval = round(np.npv(0.10, [y0, y1, y2, y3, y4, y4, y4, y4, y4, y4, y4, y4,
+                             y4, y4, y4, y4, y4, y4, y4, y4, y4, y4, y4,
+                             y4, y4, y4]), 0)
 capexperbbl = et / facilitysz
 
 irr = figure(title="IRR", title_location="above", plot_width=200,
@@ -376,7 +381,7 @@ def update_data(attrname, old, new):
     Net = Uptime * (365 * (facilitysz * (Oil_Price_CAD - (Fuel + Opp_Cost +
                                                  Sus_Cap + Royalties + Taxes + Emission_Comp + Transport))))
     Year = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15,
-            16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30]
+            16, 17, 18, 19, 20, 21, 22, 23, 24, 25]
 
     if Construction_time == 2.5:
         # Calculate Top & Bottom
@@ -438,89 +443,41 @@ def update_data(attrname, old, new):
         y1 = -et / 2
         y2 = Net * 0.75
         y3 = Net
-        y4 = Net
-        y5 = Net
+
     elif Construction_time == 4:
         y0 = -et / 2
         y1 = -et / 2
         y2 = Net * 0.25
         y3 = Net * 0.75
-        y4 = Net
-        y5 = Net
+
     elif Construction_time == 2.5:
         y0 = -et / 2
         y1 = -et / 2
         y2 = Net
         y3 = Net
-        y4 = Net
-        y5 = Net
 
-    y6 = Net
-    y7 = Net
-    y8 = Net
-    y9 = Net
-    y10 = Net
-    y11 = Net
-    y12 = Net
-    y13 = Net
-    y14 = Net
-    y15 = Net
-    y16 = Net
-    y17 = Net
-    y18 = Net
-    y19 = Net
-    y20 = Net
-    y21 = Net
-    y22 = Net
-    y23 = Net
-    y24 = Net
-    y25 = Net
-    y26 = Net
-    y27 = Net
-    y28 = Net
-    y29 = Net
-    y30 = Net
-
-    # Payback data list
-    Payback = [y0, y0 + y1, y0 + y1 + y2, y0 + y1 + y2 + y3, y0 + y1 + y2 + y3 + y4, y0 + y1 + y2 + y3 + y4 + y5, y0 + y1 + y2 + y3 + y4 + y5 + y6,
-               y0 + y1 + y2 + y3 + y4 + y5 + y6 + y7, y0 + y1 + y2 + y3 + y4 + y5 + y6 + y7 + y8, y0 + y1 + y2 + y3 + y4 + y5 + y6 + y7 +
-               y8 + y9, y0 + y1 + y2 + y3 + y4 + y5 + y6 + y7 + y8 + y9 +
-               y10, y0 + y1 + y2 + y3 + y4 + y5 + y6 + y7 + y8 + y9 + y10 + y11,
-               y0 + y1 + y2 + y3 + y4 + y5 + y6 + y7 + y8 + y9 + y10 + y11 + y12, y0 + y1 + y2 + y3 + y4 + y5 + y6 + y7 +
-               y8 + y9 + y10 + y11 + y12 + y13, y0 + y1 + y2 + y3 + y4 +
-               y5 + y6 + y7 + y8 + y9 + y10 + y11 + y12 + y13 + y14,
-               y0 + y1 + y2 + y3 + y4 + y5 + y6 + y7 + y8 + y9 + y10 + y11 + y12 + y13 + y14 + y15, y0 + y1 + y2 + y3 + y4 + y5 + y6 + y7 + y8 + y9 +
-               y10 + y11 + y12 + y13 + y14 + y15 + y16, y0 + y1 + y2 + y3 + y4 + y5 +
-               y6 + y7 + y8 + y9 + y10 + y11 + y12 + y13 + y14 + y15 + y16 + y17,
-               y0 + y1 + y2 + y3 + y4 + y5 + y6 + y7 + y8 + y9 + y10 + y11 + y12 + y13 + y14 + y15 + y16 + y17 + y18, y0 + y1 + y2 + y3 + y4 + y5 + y6 + y7 + y8 + y9 + y10 + y11 +
-               y12 + y13 + y14 + y15 + y16 + y17 + y18 + y19, y0 + y1 + y2 + y3 + y4 + y5 + y6 +
-               y7 + y8 + y9 + y10 + y11 + y12 + y13 + y14 + y15 + y16 + y17 + y18 + y19 + y20,
-               y0 + y1 + y2 + y3 + y4 + y5 + y6 + y7 + y8 + y9 + y10 + y11 + y12 + y13 + y14 + y15 + y16 + y17 + y18 + y19 + y20 + y21, y0 +
-               y1 + y2 + y3 + y4 + y5 + y6 + y7 + y8 + y9 + y10 + y11 + y12 +
-               y13 + y14 + y15 + y16 + y17 + y18 + y19 + y20 + y21 + y22,
-               y0 + y1 + y2 + y3 + y4 + y5 + y6 + y7 + y8 + y9 + y10 + y11 + y12 + y13 + y14 + y15 + y16 + y17 + y18 + y19 + y20 + y21 + y22 + y23, y0 + y1 + y2 + y3 + y4 + y5 + y6 + y7 + y8 + y9 + y10 + y11 + y12 + y13 +
-               y14 + y15 + y16 + y17 + y18 + y19 + y20 + y21 + y22 + y23 + y24, y0 + y1 + y2 + y3 + y4 + y5 + y6 + y7 +
-               y8 + y9 + y10 + y11 + y12 + y13 + y14 + y15 + y16 +
-               y17 + y18 + y19 + y20 + y21 + y22 + y23 + y24 + y25,
-               y0 + y1 + y2 + y3 + y4 + y5 + y6 + y7 + y8 + y9 + y10 + y11 + y12 + y13 + y14 + y15 + y16 + y17 + y18 + y19 + y20 + y21 + y22 + y23 + y24 + y25 + y26, y0 + y1 + y2 + y3 + y4 + y5 + y6 + y7 + y8 + y9 + y10 + y11 + y12 + y13 + y14 + y15 +
-               y16 + y17 + y18 + y19 + y20 + y21 + y22 + y23 + y24 + y25 + y26 + y27, y0 + y1 + y2 + y3 + y4 + y5 + y6 + y7 + y8 +
-               y9 + y10 + y11 + y12 + y13 + y14 + y15 + y16 + y17 + y18 +
-               y19 + y20 + y21 + y22 + y23 + y24 + y25 + y26 + y27 + y28,
-               y0 + y1 + y2 + y3 + y4 + y5 + y6 + y7 + y8 + y9 + y10 + y11 + y12 + y13 + y14 + y15 + y16 + y17 + y18 + y19 + y20 + y21 + y22 + y23 + y24 + y25 + y26 + y27 + y28 + y29, y0 + y1 + y2 + y3 + y4 + y5 + y6 + y7 + y8 + y9 + y10 + y11 + y12 + y13 + y14 + y15 + y16 + y17 + y18 + y19 + y20 + y21 + y22 + y23 + y24 + y25 + y26 + y27 + y28 + y29 + y30]
+    baseyears = y0 + y1 + y2 + y3
+    y4 = Net
+    Payback = [y0, y0 + y1, y0 + y1 + y2, baseyears, baseyears + (y4),
+               baseyears + (y4*2), baseyears + (y4*3), baseyears + (y4*4),
+               baseyears + (y4*5), baseyears + (y4*6), baseyears + (y4*7),
+               baseyears + (y4*8), baseyears + (y4*9), baseyears + (y4*10),
+               baseyears + (y4*11), baseyears + (y4*12), baseyears + (y4*13),
+               baseyears + (y4*14), baseyears + (y4*15), baseyears + (y4*16),
+               baseyears + (y4*17), baseyears + (y4*18), baseyears + (y4*19),
+               baseyears + (y4*20), baseyears + (y4*21), baseyears + (y4*22)]
 
     # New sources
     returnsource.data = dict(x=Year, y=Payback)
 
     # IRR Graph Update
-    irrval = round(np.irr([y0, y1, y2, y3, y4, y5, y6, y7, y8, y9, y10, y11, y12,
-                           y13, y14, y15, y16, y17, y18, y19, y20, y21, y22, y23,
-                           y24, y25, y26, y27, y28, y29,
-                           y30]), 3)
+    irrval = round(np.irr([y0, y1, y2, y3, y4, y4, y4, y4, y4, y4, y4, y4, y4,
+                           y4, y4, y4, y4, y4, y4, y4, y4, y4, y4, y4,
+                           y4, y4]), 3)
     label.text = 'IRR: {:.1%}' .format(irrval)
-    npvval = round(np.npv(0.10, [y0, y1, y2, y3, y4, y5, y6, y7, y8, y9, y10, y11,
-                          y12, y13, y14, y15, y16, y17, y18, y19, y20, y21, y22,
-                          y23, y24, y25, y26, y27, y28, y29,
-                          y30]), 0)
+    npvval = round(np.npv(0.10, [y0, y1, y2, y3, y4, y4, y4, y4, y4, y4, y4, y4,
+                                 y4, y4, y4, y4, y4, y4, y4, y4, y4, y4, y4,
+                                 y4, y4, y4]), 0)
     label2.text = 'NPV: {:,.0f}' .format(npvval)
     capexperbbl = et / facilitysz
     label3.text = '$/bbl: {:,.0f}' .format(capexperbbl)
