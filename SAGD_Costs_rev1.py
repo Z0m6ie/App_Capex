@@ -272,9 +272,10 @@ otherspend = [ot0, ot1, ot2, otheryear, otheryear,
               otheryear, otheryear, otheryear,
               otheryear, otheryear, otheryear]
 
+firstfewyears = [0, 1, 2]
 # New sources
 returnsource = ColumnDataSource(dict(x=Year, y=Payback))
-capexspendsource = ColumnDataSource(dict(x=Year, y=capexspend))
+capexspendsource = ColumnDataSource(dict(x=firstfewyears, y=capexspend))
 suscapspendsource = ColumnDataSource(dict(x=Year, y=suscapspend))
 opexspendsource = ColumnDataSource(dict(x=Year, y=opexspend))
 fuelspendsource = ColumnDataSource(dict(x=Year, y=fuelspend))
@@ -581,7 +582,7 @@ def update_data(attrname, old, new):
     capexspend = [-y0, -y1, -y2]
     # New sources
     returnsource.data = dict(x=Year, y=Payback)
-    capexspendsource.data = dict(x=Year, y=capexspend)
+    capexspendsource.data = dict(x=firstfewyears, y=capexspend)
     suscapspendsource.data = dict(x=Year, y=suscapspend)
     opexspendsource.data = dict(x=Year, y=opexspend)
     fuelspendsource.data = dict(x=Year, y=fuelspend)
