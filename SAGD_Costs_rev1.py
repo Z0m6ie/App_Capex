@@ -63,7 +63,7 @@ phover = HoverTool(
 
 
 # Other Tools
-TOOLS = 'box_zoom, box_select, resize, reset'
+TOOLS = 'box_zoom, box_select, reset'
 
 
 # Figure
@@ -194,7 +194,7 @@ Thover = HoverTool(mode='vline',
 
 
 # Other Tools
-TOOLS = 'box_zoom, box_select, resize, reset'
+TOOLS = 'box_zoom, box_select, reset'
 
 
 # Plot
