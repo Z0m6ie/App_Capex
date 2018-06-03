@@ -301,13 +301,13 @@ roiline = T.line(x='x', y='y', color="teal", line_width=4,
 capexbar = T.vbar(x='x', top='y', bottom=0, width=1, color="red",
                   alpha=0.75, source=capexspendsource, legend="CAPEX Spend")
 suscapbar = T.vbar(x='x', top='y', bottom=0, width=1, color="purple",
-                   alpha=0.75, source=capexspendsource, legend="Sustaining Capital Spend")
+                   alpha=0.75, source=suscapspendsource, legend="Sustaining Capital Spend")
 opexbar = T.vbar(x='x', top='y', bottom=0, width=1, color="firebrick",
-                 alpha=0.75, source=capexspendsource, legend="OPEX Spend")
+                 alpha=0.75, source=opexspendsource, legend="OPEX Spend")
 fuelbar = T.vbar(x='x', top='y', bottom=0, width=1, color="b",
-                 alpha=0.75, source=capexspendsource, legend="Fuel Spend")
+                 alpha=0.75, source=fuelspendsource, legend="Fuel Spend")
 otherbar = T.vbar(x='x', top='y', bottom=0, width=1, color="darkviolet",
-                  alpha=0.75, source=capexspendsource, legend="Other Spend")
+                  alpha=0.75, source=otherspendsource, legend="Other Spend")
 
 
 # Format
