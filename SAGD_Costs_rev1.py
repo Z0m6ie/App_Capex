@@ -426,13 +426,13 @@ Tinputs1 = widgetbox(oil_slider, fuel_slider,
 Tinputs2 = widgetbox(time_select, upt_slider, tax_slider, emiss_slider,
                      width=200)
 
-para = widgetbox(div, sizing_mode='scale_width')
+para = widgetbox(div, sizing_mode='stretch_both')
 
 l = layout([
            [para, inputs, Tinputs1, Tinputs2],
            [p, irr],
            [T],
-           ], sizing_mode='scale_width')
+           ], sizing_mode='stretch_both')
 
 
 # Show!
