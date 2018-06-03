@@ -105,13 +105,13 @@ p.ygrid.grid_line_color = None
 eng_slider = Slider(start=0, end=500000000,
                     value=100000000, step=100000, title="Engineering $", format="$0,000")
 equip_slider = Slider(start=0, end=500000000,
-                      value=100000000, step=100000, title="Equipment $")
+                      value=100000000, step=100000, title="Equipment $", format="$0,000")
 bulk_slider = Slider(start=0, end=500000000,
-                     value=80000000, step=100000, title="Bulk_Materials $")
+                     value=80000000, step=100000, title="Bulk_Materials $", format="$0,000")
 indi_slider = Slider(start=0, end=500000000,
-                     value=50000000, step=100000, title="Indirects $")
+                     value=50000000, step=100000, title="Indirects $", format="$0,000")
 lab_slider = Slider(start=0, end=500000000,
-                    value=100000000, step=100000, title="Labour $")
+                    value=100000000, step=100000, title="Labour $", format="$0,000")
 time_select = Select(title="Years To First Steam:", value='3',
                      options=['2.5', '3', '4'])
 """
@@ -427,13 +427,13 @@ Tinputs1 = widgetbox(oil_slider, fuel_slider,
 Tinputs2 = widgetbox(time_select, upt_slider, tax_slider, emiss_slider,
                      width=200)
 
-para = widgetbox(div, sizing_mode='stretch_both')
+para = widgetbox(div, sizing_mode='scale_width')
 
 l = layout([
            [para, inputs, Tinputs1, Tinputs2],
            [p, irr],
            [T],
-           ], sizing_mode='stretch_both')
+           ], sizing_mode='scale_width')
 
 
 # Show!
