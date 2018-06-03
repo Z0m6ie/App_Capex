@@ -42,24 +42,24 @@ et = a + b + c + d + e
 
 # New sources
 engsource = ColumnDataSource(data=dict(x=[ab], y=[at], desc=['Engineering'],
-                             info=[at]))
+                                       info=[at]))
 equipsource = ColumnDataSource(data=dict(x=[bb], y=[bt], desc=['Equipment'],
-                               info=[bt-at]))
+                                         info=[bt - at]))
 bulksource = ColumnDataSource(data=dict(x=[cb], y=[ct],
-                              desc=['Bulk Materials'], info=[ct-bt]))
+                                        desc=['Bulk Materials'], info=[ct - bt]))
 indisource = ColumnDataSource(data=dict(x=[db], y=[dt], desc=['Indirects'],
-                              info=[dt-ct]))
+                                        info=[dt - ct]))
 labsource = ColumnDataSource(data=dict(x=[eb], y=[et], desc=['Labour'],
-                             info=[et-dt]))
+                                       info=[et - dt]))
 
 
 # HoverTool Label
 phover = HoverTool(
-                   tooltips=[
-                    ('Item', '@desc'),
-                    ('Cost', '@info{$ 0.00 a}'),
-                     ],
-                   )
+    tooltips=[
+        ('Item', '@desc'),
+        ('Cost', '@info{$ 0.00 a}'),
+    ],
+)
 
 
 # Other Tools
@@ -144,7 +144,13 @@ Transport = 7
 Uptime = 0.95
 Construction_time = 3
 Net = Uptime * (365 * (facilitysz * (Oil_Price_CAD - (Fuel + Opp_Cost +
-                                             Sus_Cap + Royalties + Taxes + Emission_Comp + Transport))))
+                                                      Sus_Cap + Royalties + Taxes + Emission_Comp + Transport))))
+suscapyear = Uptime * (365 * (facilitysz * (Sus_Cap)))
+opexyear = Uptime * (365 * (facilitysz * (Opp_Cost)))
+fuelyear = Uptime * (365 * (facilitysz * (Fuel)))
+otheryear = Uptime * \
+    (365 * (facilitysz * (Royalties + Taxes + Emission_Comp + Transport)))
+
 Year = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15,
         16, 17, 18, 19, 20, 21, 22, 23, 24, 25]
 
@@ -156,39 +162,128 @@ if Construction_time == 3:
     y1 = -et / 2
     y2 = Net * 0.75
     y3 = Net
+    s0 = 0
+    s1 = 0
+    s2 = suscapyear * 0.75
+    s3 = suscapyear
+    o0 = 0
+    o1 = 0
+    o2 = opexyear * 0.75
+    o3 = opexyear
+    f0 = 0
+    f1 = 0
+    f2 = fuelyear * 0.75
+    f3 = fuelyear
+    ot0 = 0
+    ot1 = 0
+    ot2 = otheryear * 0.75
+    ot3 = otheryear
 
 elif Construction_time == 4:
     y0 = -et / 2
     y1 = -et / 2
     y2 = Net * 0.25
     y3 = Net * 0.75
+    s0 = 0
+    s1 = 0
+    s2 = suscapyear * 0.25
+    s3 = suscapyear * 0.75
+    o0 = 0
+    o1 = 0
+    o2 = opexyear * 0.25
+    o3 = opexyear * 0.75
+    f0 = 0
+    f1 = 0
+    f2 = fuelyear * 0.25
+    f3 = fuelyear * 0.75
+    ot0 = 0
+    ot1 = 0
+    ot2 = otheryear * 0.25
+    ot3 = otheryear * 0.75
 
 elif Construction_time == 2.5:
     y0 = -et / 2
     y1 = -et / 2
     y2 = Net
     y3 = Net
+    s0 = 0
+    s1 = 0
+    s2 = suscapyear
+    s3 = suscapyear
+    o0 = 0
+    o1 = 0
+    o2 = opexyear
+    o3 = opexyear
+    f0 = 0
+    f1 = 0
+    f2 = fuelyear
+    f3 = fuelyear
+    ot0 = 0
+    ot1 = 0
+    ot2 = otheryear
+    ot3 = otheryear
 
 baseyears = y0 + y1 + y2 + y3
 y4 = Net
 Payback = [y0, y0 + y1, y0 + y1 + y2, baseyears, baseyears + (y4),
-           baseyears + (y4*2), baseyears + (y4*3), baseyears + (y4*4),
-           baseyears + (y4*5), baseyears + (y4*6), baseyears + (y4*7),
-           baseyears + (y4*8), baseyears + (y4*9), baseyears + (y4*10),
-           baseyears + (y4*11), baseyears + (y4*12), baseyears + (y4*13),
-           baseyears + (y4*14), baseyears + (y4*15), baseyears + (y4*16),
-           baseyears + (y4*17), baseyears + (y4*18), baseyears + (y4*19),
-           baseyears + (y4*20), baseyears + (y4*21), baseyears + (y4*22)]
+           baseyears + (y4 * 2), baseyears + (y4 * 3), baseyears + (y4 * 4),
+           baseyears + (y4 * 5), baseyears + (y4 * 6), baseyears + (y4 * 7),
+           baseyears + (y4 * 8), baseyears + (y4 * 9), baseyears + (y4 * 10),
+           baseyears + (y4 * 11), baseyears + (y4 * 12), baseyears + (y4 * 13),
+           baseyears + (y4 * 14), baseyears + (y4 * 15), baseyears + (y4 * 16),
+           baseyears + (y4 * 17), baseyears + (y4 * 18), baseyears + (y4 * 19),
+           baseyears + (y4 * 20), baseyears + (y4 * 21), baseyears + (y4 * 22)]
 
-capexspend = [(y0), (y0 + y1), (y0 + y1 + y2)]
+capexspend = [(y0), (y1), (y2)]
+
+suscapspend = [s0, s1, s2, suscapyear, suscapyear,
+               suscapyear, suscapyear, suscapyear,
+               suscapyear, suscapyear, suscapyear,
+               suscapyear, suscapyear, suscapyear,
+               suscapyear, suscapyear, suscapyear,
+               suscapyear, suscapyear, suscapyear,
+               suscapyear, suscapyear, suscapyear,
+               suscapyear, suscapyear, suscapyear]
+
+opexspend = [o0, o1, o2, opexyear, opexyear,
+             opexyear, opexyear, opexyear,
+             opexyear, opexyear, opexyear,
+             opexyear, opexyear, opexyear,
+             opexyear, opexyear, opexyear,
+             opexyear, opexyear, opexyear,
+             opexyear, opexyear, opexyear,
+             opexyear, opexyear, opexyear]
+
+fuelspend = [f0, f1, f2, fuelyear, fuelyear,
+             fuelyear, fuelyear, fuelyear,
+             fuelyear, fuelyear, fuelyear,
+             fuelyear, fuelyear, fuelyear,
+             fuelyear, fuelyear, fuelyear,
+             fuelyear, fuelyear, fuelyear,
+             fuelyear, fuelyear, fuelyear,
+             fuelyear, fuelyear, fuelyear]
+
+otherspend = [ot0, ot1, ot2, otheryear, otheryear,
+              otheryear, otheryear, otheryear,
+              otheryear, otheryear, otheryear,
+              otheryear, otheryear, otheryear,
+              otheryear, otheryear, otheryear,
+              otheryear, otheryear, otheryear,
+              otheryear, otheryear, otheryear,
+              otheryear, otheryear, otheryear]
+
 # New sources
 returnsource = ColumnDataSource(dict(x=Year, y=Payback))
 capexspendsource = ColumnDataSource(dict(x=Year, y=capexspend))
+suscapspendsource = ColumnDataSource(dict(x=Year, y=suscapspend))
+opexspendsource = ColumnDataSource(dict(x=Year, y=opexspend))
+fuelspendsource = ColumnDataSource(dict(x=Year, y=fuelspend))
+otherspendsource = ColumnDataSource(dict(x=Year, y=otherspend))
 
 # HoverTool Label
 Thover = HoverTool(mode='vline',
                    tooltips=[
-                    ('Return', '@y{$ 0.00 a}'),
+                       ('Return', '@y{$ 0.00 a}'),
                    ]
                    )
 
@@ -200,10 +295,18 @@ TOOLS = 'box_zoom, box_select, reset'
 # Plot
 T = figure(title="Return On Investment", title_location="above",
            plot_width=400, plot_height=100, tools=[TOOLS, Thover])
-T.line(x='x', y='y', color="teal", line_width=4,
-       alpha=0.75, source=returnsource)
-T.vbar(x='x', top='y', bottom=0, width=1, color="red",
-       alpha=0.75, source=capexspendsource, legend="CAPEX Spend")
+roiline = T.line(x='x', y='y', color="teal", line_width=4,
+                 alpha=0.75, source=returnsource)
+capexbar = T.vbar(x='x', top='y', bottom=0, width=1, color="red",
+                  alpha=0.75, source=capexspendsource, legend="CAPEX Spend")
+suscapbar = T.vbar(x='x', top='y', bottom=0, width=1, color="purple",
+                   alpha=0.75, source=capexspendsource, legend="Sustaining Capital Spend")
+opexbar = T.vbar(x='x', top='y', bottom=0, width=1, color="firebrick",
+                 alpha=0.75, source=capexspendsource, legend="OPEX Spend")
+fuelbar = T.vbar(x='x', top='y', bottom=0, width=1, color="b",
+                 alpha=0.75, source=capexspendsource, legend="Fuel Spend")
+otherbar = T.vbar(x='x', top='y', bottom=0, width=1, color="darkviolet",
+                  alpha=0.75, source=capexspendsource, legend="Other Spend")
 
 
 # Format
@@ -231,8 +334,8 @@ emiss_slider = Slider(start=0, end=20,
                       value=0.3, step=0.1, title="Emission Compliance $/bbl")
 tran_slider = Slider(start=0, end=20,
                      value=7, step=1, title="Transport Cost $/bbl")
-#oth_slider = Slider(start=0, end=20,
-                    #value=1, step=1, title="Other Cost $/bbl")
+# oth_slider = Slider(start=0, end=20,
+# value=1, step=1, title="Other Cost $/bbl")
 upt_slider = Slider(start=0, end=1,
                     value=0.95, step=0.01, title="Uptime")
 facil_slider = Slider(start=0, end=100000,
@@ -275,7 +378,7 @@ irr.background_fill_color = "aliceblue"
 
 # Intro Para
 ####################################
-#Text
+# Text
 div = Div(text="""<h3 style="text-align: left;"><strong><span style="color: #333333;">David Peabody</span></strong></span></h3>
 <h1 style="text-align: left;"><span style="text-decoration: underline;"><strong><span style="color: #333333; text-decoration: underline;">CAPEX &amp; OPEX Dashboard</span></strong></span></h1>
 <h2><span style="color: #333333;">Move the sliders to investigate the effects of CAPEX and OPEX on the projects rate of return. For a full list of references and assumption please see the following link.&nbsp;<a title="Link to References" href="https://github.com/Z0m6ie/App_Capex/tree/master" target="_blank">References</a></span></h2>
@@ -283,7 +386,6 @@ div = Div(text="""<h3 style="text-align: left;"><strong><span style="color: #333
 # div = Div(text="""<h1 style="text-align: left;"><strong><span style="color: #333333;"><img src="http://www.snclavalin.com/en/files/images/SNC-Logo_Desktop.png" alt="Logo" width="107" height="47" /></span></strong></h1>
 # <h1 style="text-align: left;"><span style="text-decoration: underline;"><strong><span style="color: #333333; text-decoration: underline;">CAPEX &amp; OPEX Dashboard</span></strong></span></h1>
 # <h2><span style="color: #333333;">Move the sliders to investigate the effects of CAPEX and OPEX on the projects rate of return. For a full list of references and assumption please see the following link.&nbsp;<a title="Link to References" href="https://github.com/Z0m6ie/App_Capex/tree/master" target="_blank">References</a></span></h2>""", width=400, height=300)
-
 
 
 # UPDATE FUNCTION
@@ -321,7 +423,7 @@ def update_data(attrname, old, new):
     Construction_time_str = time_select.value
     Construction_time = float(Construction_time_str)
     Net = Uptime * (365 * (facilitysz * (Oil_Price_CAD - (Fuel + Opp_Cost +
-                                                 Sus_Cap + Royalties + Taxes + Emission_Comp + Transport))))
+                                                          Sus_Cap + Royalties + Taxes + Emission_Comp + Transport))))
     Year = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15,
             16, 17, 18, 19, 20, 21, 22, 23, 24, 25]
 
@@ -348,14 +450,13 @@ def update_data(attrname, old, new):
         dt = a + b + c + d
         et = a + b + c + d + e
 
-
     # New sources
     engsource.data = dict(x=[ab], y=[at], desc=['Engineering'], info=[at])
-    equipsource.data = dict(x=[at], y=[bt], desc=['Equipment'], info=[bt-at])
+    equipsource.data = dict(x=[at], y=[bt], desc=['Equipment'], info=[bt - at])
     bulksource.data = dict(x=[bt], y=[ct], desc=['Bulk Materials'],
-                           info=[ct-bt])
-    indisource.data = dict(x=[ct], y=[dt], desc=['Indirects'], info=[dt-ct])
-    labsource.data = dict(x=[dt], y=[et], desc=['Labour'], info=[et-dt])
+                           info=[ct - bt])
+    indisource.data = dict(x=[ct], y=[dt], desc=['Indirects'], info=[dt - ct])
+    labsource.data = dict(x=[dt], y=[et], desc=['Labour'], info=[et - dt])
     # Return Calculation
     con_var = Construction_time - 1
     if Construction_time == 3:
@@ -364,34 +465,127 @@ def update_data(attrname, old, new):
         y1 = -et / 2
         y2 = Net * 0.75
         y3 = Net
+        s0 = 0
+        s1 = 0
+        s2 = suscapyear * 0.75
+        s3 = suscapyear
+        o0 = 0
+        o1 = 0
+        o2 = opexyear * 0.75
+        o3 = opexyear
+        f0 = 0
+        f1 = 0
+        f2 = fuelyear * 0.75
+        f3 = fuelyear
+        ot0 = 0
+        ot1 = 0
+        ot2 = otheryear * 0.75
+        ot3 = otheryear
 
     elif Construction_time == 4:
         y0 = -et / 2
         y1 = -et / 2
         y2 = Net * 0.25
         y3 = Net * 0.75
+        s0 = 0
+        s1 = 0
+        s2 = suscapyear * 0.25
+        s3 = suscapyear * 0.75
+        o0 = 0
+        o1 = 0
+        o2 = opexyear * 0.25
+        o3 = opexyear * 0.75
+        f0 = 0
+        f1 = 0
+        f2 = fuelyear * 0.25
+        f3 = fuelyear * 0.75
+        ot0 = 0
+        ot1 = 0
+        ot2 = otheryear * 0.25
+        ot3 = otheryear * 0.75
 
     elif Construction_time == 2.5:
         y0 = -et / 2
         y1 = -et / 2
         y2 = Net
         y3 = Net
+        s0 = 0
+        s1 = 0
+        s2 = suscapyear
+        s3 = suscapyear
+        o0 = 0
+        o1 = 0
+        o2 = opexyear
+        o3 = opexyear
+        f0 = 0
+        f1 = 0
+        f2 = fuelyear
+        f3 = fuelyear
+        ot0 = 0
+        ot1 = 0
+        ot2 = otheryear
+        ot3 = otheryear
 
     baseyears = y0 + y1 + y2 + y3
     y4 = Net
     Payback = [y0, y0 + y1, y0 + y1 + y2, baseyears, baseyears + (y4),
-               baseyears + (y4*2), baseyears + (y4*3), baseyears + (y4*4),
-               baseyears + (y4*5), baseyears + (y4*6), baseyears + (y4*7),
-               baseyears + (y4*8), baseyears + (y4*9), baseyears + (y4*10),
-               baseyears + (y4*11), baseyears + (y4*12), baseyears + (y4*13),
-               baseyears + (y4*14), baseyears + (y4*15), baseyears + (y4*16),
-               baseyears + (y4*17), baseyears + (y4*18), baseyears + (y4*19),
-               baseyears + (y4*20), baseyears + (y4*21), baseyears + (y4*22)]
+               baseyears + (y4 * 2), baseyears +
+               (y4 * 3), baseyears + (y4 * 4),
+               baseyears + (y4 * 5), baseyears +
+               (y4 * 6), baseyears + (y4 * 7),
+               baseyears + (y4 * 8), baseyears +
+               (y4 * 9), baseyears + (y4 * 10),
+               baseyears + (y4 * 11), baseyears +
+               (y4 * 12), baseyears + (y4 * 13),
+               baseyears + (y4 * 14), baseyears +
+               (y4 * 15), baseyears + (y4 * 16),
+               baseyears + (y4 * 17), baseyears +
+               (y4 * 18), baseyears + (y4 * 19),
+               baseyears + (y4 * 20), baseyears + (y4 * 21), baseyears + (y4 * 22)]
 
-    capexspend = [-y0, -y0 - y1, -y0 - y1 - y2]
+    suscapspend = [s0, s1, s2, suscapyear, suscapyear,
+                   suscapyear, suscapyear, suscapyear,
+                   suscapyear, suscapyear, suscapyear,
+                   suscapyear, suscapyear, suscapyear,
+                   suscapyear, suscapyear, suscapyear,
+                   suscapyear, suscapyear, suscapyear,
+                   suscapyear, suscapyear, suscapyear,
+                   suscapyear, suscapyear, suscapyear]
+
+    opexspend = [o0, o1, o2, opexyear, opexyear,
+                 opexyear, opexyear, opexyear,
+                 opexyear, opexyear, opexyear,
+                 opexyear, opexyear, opexyear,
+                 opexyear, opexyear, opexyear,
+                 opexyear, opexyear, opexyear,
+                 opexyear, opexyear, opexyear,
+                 opexyear, opexyear, opexyear]
+
+    fuelspend = [f0, f1, f2, fuelyear, fuelyear,
+                 fuelyear, fuelyear, fuelyear,
+                 fuelyear, fuelyear, fuelyear,
+                 fuelyear, fuelyear, fuelyear,
+                 fuelyear, fuelyear, fuelyear,
+                 fuelyear, fuelyear, fuelyear,
+                 fuelyear, fuelyear, fuelyear,
+                 fuelyear, fuelyear, fuelyear]
+
+    otherspend = [ot0, ot1, ot2, otheryear, otheryear,
+                  otheryear, otheryear, otheryear,
+                  otheryear, otheryear, otheryear,
+                  otheryear, otheryear, otheryear,
+                  otheryear, otheryear, otheryear,
+                  otheryear, otheryear, otheryear,
+                  otheryear, otheryear, otheryear,
+                  otheryear, otheryear, otheryear]
+    capexspend = [-y0, -y1, -y2]
     # New sources
     returnsource.data = dict(x=Year, y=Payback)
     capexspendsource.data = dict(x=Year, y=capexspend)
+    suscapspendsource.data = dict(x=Year, y=suscapspend)
+    opexspendsource.data = dict(x=Year, y=opexspend)
+    fuelspendsource.data = dict(x=Year, y=fuelspend)
+    otherspendsource.data = dict(x=Year, y=otherspend)
 
     # IRR Graph Update
     irrval = round(np.irr([y0, y1, y2, y3, y4, y4, y4, y4, y4, y4, y4, y4, y4,
