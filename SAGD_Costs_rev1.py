@@ -101,25 +101,26 @@ p.ygrid.grid_line_color = None
 
 
 # Set up widgets
-"""
+
 eng_slider = Slider(start=0, end=500000000,
-                    value=100000000, step=5000000, title="Engineering $", format="$0,000")
+                    value=100000000, step=100000, title="Engineering $", format="$0,000")
 equip_slider = Slider(start=0, end=500000000,
-                      value=300000000, step=5000000, title="Equipment $")
+                      value=100000000, step=100000, title="Equipment $")
 bulk_slider = Slider(start=0, end=500000000,
-                     value=280000000, step=5000000, title="Bulk_Materials $")
+                     value=80000000, step=100000, title="Bulk_Materials $")
 indi_slider = Slider(start=0, end=500000000,
-                     value=230000000, step=5000000, title="Indirects $")
+                     value=50000000, step=100000, title="Indirects $")
 lab_slider = Slider(start=0, end=500000000,
-                    value=390000000, step=5000000, title="Labour $")
-"""
+                    value=100000000, step=100000, title="Labour $")
 time_select = Select(title="Years To First Steam:", value='3',
                      options=['2.5', '3', '4'])
+"""
 eng_slider = TextInput(value="10000000", title="Engineering $:")
 equip_slider = TextInput(value="100000000", title="Equipment $:")
 bulk_slider = TextInput(value="80000000", title="Bulk_Materials $:")
 indi_slider = TextInput(value="50000000", title="Indirects $:")
 lab_slider = TextInput(value="100000000", title="Labour $:")
+"""
 
 # PAYBACK GRAPH
 ####################################
