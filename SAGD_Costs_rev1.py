@@ -103,7 +103,7 @@ p.ygrid.grid_line_color = None
 # Set up widgets
 
 eng_slider = Slider(start=0, end=500000000,
-                    value=100000000, step=100000, title="Engineering $", format="$0,000")
+                    value=10000000, step=100000, title="Engineering $", format="$0,000")
 equip_slider = Slider(start=0, end=500000000,
                       value=100000000, step=100000, title="Equipment $", format="$0,000")
 bulk_slider = Slider(start=0, end=500000000,
