@@ -416,16 +416,16 @@ for w in [eng_slider, equip_slider, bulk_slider, indi_slider, lab_slider,
 #  CAPEX Set up layouts and add to document
 inputs = widgetbox(facil_slider, eng_slider, equip_slider,
                    bulk_slider, indi_slider, lab_slider,
-                   width=200)
+                   height=50, width=200)
 
 
 # PAYBACK Set up layouts and add to document
 Tinputs1 = widgetbox(oil_slider, fuel_slider,
                      opp_slider, sust_slider, roy_slider,
-                     width=200)
+                     height=50, width=200)
 
 Tinputs2 = widgetbox(time_select, upt_slider, tax_slider, emiss_slider,
-                     width=200)
+                     height=50, width=200)
 
 para = widgetbox(div, sizing_mode='scale_width')
 
