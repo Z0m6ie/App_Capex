@@ -294,15 +294,15 @@ def update_data(attrname, old, new):
 
     # Get the current slider values
     a = eng_slider.value
-    a = float(a)
+
     b = equip_slider.value
-    b = float(b)
+
     c = bulk_slider.value
-    c = float(c)
+
     d = indi_slider.value
-    d = float(d)
+
     e = lab_slider.value
-    e = float(e)
+
     # opex function
     ################################
     # Data - Get current slider value
