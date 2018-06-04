@@ -365,15 +365,15 @@ irr = figure(title="IRR", title_location="above", plot_width=200,
              plot_height=65, x_range=(0, 3), y_range=(0, 3))
 
 
-label = Label(x=0.25, y=1.00, text='IRR: {:.1%}' .format(irrval),
+label = Label(x=0.25, y=0.25, text='IRR: {:.1%}' .format(irrval),
               text_font_size='25pt', text_color='teal')
-label2 = Label(x=0.25, y=0.5, text='Yearly Sustaining Captial Spend: {:,.0f}' .format(suscapyear),
+label2 = Label(x=0.25, y=1.0, text='Yearly Sustaining Captial Spend $: {:,}' .format(suscapyear),
                text_font_size='25pt', text_color='teal')
-label3 = Label(x=0.25, y=2.0, text='$/bbl: {:,.0f}' .format(capexperbbl),
+label3 = Label(x=0.25, y=2.25, text='$/bbl: {:,.0f}' .format(capexperbbl),
                text_font_size='25pt', text_color='teal')
-label4 = Label(x=0.25, y=2.5, text='CAPEX $: {:,}' .format(et),
+label4 = Label(x=0.25, y=2.75, text='CAPEX $: {:,}' .format(et),
                text_font_size='25pt', text_color='teal')
-label5 = Label(x=0.25, y=1.50, text='Yearly Sustaining OPEX: {:,.0f}' .format(opexyear),
+label5 = Label(x=0.25, y=1.75, text='Yearly OPEX Spend $: {:,}' .format(opexyear),
                text_font_size='25pt', text_color='teal')
 
 irr.add_layout(label)
@@ -629,7 +629,7 @@ def update_data(attrname, old, new):
     capexperbbl = et / facilitysz
     label3.text = '$/bbl: {:,.0f}' .format(capexperbbl)
     label4.text = 'CAPEX $: {:,}' .format(et)
-    label5.text = 'Yearly Sustaining OPEX Spend: {:,}' .format(opexyear)
+    label5.text = 'Yearly OPEX Spend: {:,}' .format(opexyear)
 
 
 for w in [eng_slider, equip_slider, bulk_slider, indi_slider, lab_slider,
