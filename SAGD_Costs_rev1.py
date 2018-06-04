@@ -367,7 +367,7 @@ irr = figure(title="IRR", title_location="above", plot_width=200,
 
 label = Label(x=0.25, y=0.10, text='IRR: {:.1%}' .format(irrval),
               text_font_size='25pt', text_color='teal')
-label2 = Label(x=0.25, y=0.75, text='Yearly Sustaining Captial Spend $: {:,.0f}' .format(suscapyear),
+label2 = Label(x=0.25, y=0.65, text='Yearly Sustaining Captial Spend $: {:,.0f}' .format(suscapyear),
                text_font_size='25pt', text_color='teal')
 label3 = Label(x=0.25, y=1.85, text='$/bbl: {:,.0f}' .format(capexperbbl),
                text_font_size='25pt', text_color='teal')
