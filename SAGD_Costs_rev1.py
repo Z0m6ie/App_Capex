@@ -625,11 +625,11 @@ def update_data(attrname, old, new):
     npvval = round(np.npv(0.10, [y0, y1, y2, y3, y4, y4, y4, y4, y4, y4, y4, y4,
                                  y4, y4, y4, y4, y4, y4, y4, y4, y4, y4, y4,
                                  y4, y4, y4]), 0)
-    label2.text = 'Yearly Sustaining Captial Spend: {:,.0f}' .format(suscapyear)
+    label2.text = 'Yearly Sustaining Captial Spend $: {:,.0f}' .format(suscapyear)
     capexperbbl = et / facilitysz
     label3.text = '$/bbl: {:,.0f}' .format(capexperbbl)
     label4.text = 'CAPEX $: {:,}' .format(et)
-    label5.text = 'Yearly OPEX Spend: {:,}' .format(opexyear)
+    label5.text = 'Yearly OPEX Spend $: {:,.0f}' .format(opexyear)
 
 
 for w in [eng_slider, equip_slider, bulk_slider, indi_slider, lab_slider,
