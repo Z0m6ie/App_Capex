@@ -8,6 +8,7 @@ from bokeh.layouts import layout
 from bokeh.models import Slider, Label, Select
 from bokeh.models.widgets import Div
 from bokeh.models.widgets import TextInput
+from bokeh.core.properties import value
 import numpy as np
 import pandas as pd
 import pandas_datareader.data as web
@@ -234,59 +235,72 @@ Payback = [y0, y0 + y1, y0 + y1 + y2, baseyears, baseyears + (y4),
            baseyears + (y4 * 17), baseyears + (y4 * 18), baseyears + (y4 * 19),
            baseyears + (y4 * 20), baseyears + (y4 * 21), baseyears + (y4 * 22)]
 
-capexspend = [(y0), (y1), (y2)]
+capexspend = [(y0), (y1)]
 
-suscapspend = [s0, s1, s2, suscapyear, suscapyear,
-               suscapyear, suscapyear, suscapyear,
-               suscapyear, suscapyear, suscapyear,
-               suscapyear, suscapyear, suscapyear,
-               suscapyear, suscapyear, suscapyear,
-               suscapyear, suscapyear, suscapyear,
-               suscapyear, suscapyear, suscapyear,
-               suscapyear, suscapyear, suscapyear]
+paybackyear = [0, 0, y2, y3, y4,
+               y4, y4, y4,
+               y4, y4, y4,
+               y4, y4, y4,
+               y4, y4, y4,
+               y4, y4, y4,
+               y4, y4, y4,
+               y4, y4, y4]
 
-opexspend = [o0, o1, o2, opexyear, opexyear,
-             opexyear, opexyear, opexyear,
-             opexyear, opexyear, opexyear,
-             opexyear, opexyear, opexyear,
-             opexyear, opexyear, opexyear,
-             opexyear, opexyear, opexyear,
-             opexyear, opexyear, opexyear,
-             opexyear, opexyear, opexyear]
+suscapspend = [-s0, -s1, -s2, -suscapyear, -suscapyear,
+               -suscapyear, -suscapyear, -suscapyear,
+               -suscapyear, -suscapyear, -suscapyear,
+               -suscapyear, -suscapyear, -suscapyear,
+               -suscapyear, -suscapyear, -suscapyear,
+               -suscapyear, -suscapyear, -suscapyear,
+               -suscapyear, -suscapyear, -suscapyear,
+               -suscapyear, -suscapyear, -suscapyear]
 
-fuelspend = [f0, f1, f2, fuelyear, fuelyear,
-             fuelyear, fuelyear, fuelyear,
-             fuelyear, fuelyear, fuelyear,
-             fuelyear, fuelyear, fuelyear,
-             fuelyear, fuelyear, fuelyear,
-             fuelyear, fuelyear, fuelyear,
-             fuelyear, fuelyear, fuelyear,
-             fuelyear, fuelyear, fuelyear]
+opexspend = [-o0, -o1, -o2, -opexyear, -opexyear,
+             -opexyear, -opexyear, -opexyear,
+             -opexyear, -opexyear, -opexyear,
+             -opexyear, -opexyear, -opexyear,
+             -opexyear, -opexyear, -opexyear,
+             -opexyear, -opexyear, -opexyear,
+             -opexyear, -opexyear, -opexyear,
+             -opexyear, -opexyear, -opexyear]
 
-otherspend = [ot0, ot1, ot2, otheryear, otheryear,
-              otheryear, otheryear, otheryear,
-              otheryear, otheryear, otheryear,
-              otheryear, otheryear, otheryear,
-              otheryear, otheryear, otheryear,
-              otheryear, otheryear, otheryear,
-              otheryear, otheryear, otheryear,
-              otheryear, otheryear, otheryear]
+fuelspend = [-f0, -f1, -f2, -fuelyear, -fuelyear,
+             -fuelyear, -fuelyear, -fuelyear,
+             -fuelyear, -fuelyear, -fuelyear,
+             -fuelyear, -fuelyear, -fuelyear,
+             -fuelyear, -fuelyear, -fuelyear,
+             -fuelyear, -fuelyear, -fuelyear,
+             -fuelyear, -fuelyear, -fuelyear,
+             -fuelyear, -fuelyear, -fuelyear]
 
-firstfewyears = [0, 1, 2]
+otherspend = [-ot0, -ot1, -ot2, -otheryear, -otheryear,
+              -otheryear, -otheryear, -otheryear,
+              -otheryear, -otheryear, -otheryear,
+              -otheryear, -otheryear, -otheryear,
+              -otheryear, -otheryear, -otheryear,
+              -otheryear, -otheryear, -otheryear,
+              -otheryear, -otheryear, -otheryear,
+              -otheryear, -otheryear, -otheryear]
+
+firstfewyears = [0, 1]
 # New sources
 returnsource = ColumnDataSource(dict(x=Year, y=Payback))
 capexspendsource = ColumnDataSource(dict(x=firstfewyears, y=capexspend))
+"""
 suscapspendsource = ColumnDataSource(dict(x=Year, y=suscapspend))
 opexspendsource = ColumnDataSource(dict(x=Year, y=opexspend))
 fuelspendsource = ColumnDataSource(dict(x=Year, y=fuelspend))
-otherspendsource = ColumnDataSource(dict(x=Year, y=otherspend))
+"""
+paybackyearsource = ColumnDataSource(dict(x=Year, y=paybackyear))
 
-# HoverTool Label
-Thover = HoverTool(mode='vline',
-                   tooltips=[
-                       ('Return', '@y{$ 0.00 a}'),
-                   ]
-                   )
+colors = ["orange", "firebrick", "royalblue", "indigo"]
+yearcosts = ["Sustaining Capital Spend", "OPEX Spend", "Fuel Spend", "Other Spend"]
+data = {'years' : Year,
+        'Sustaining Capital Spend' : suscapspend,
+        'OPEX Spend' : opexspend,
+        'Fuel Spend' : fuelspend,
+        'Other Spend' : otherspend}
+source = ColumnDataSource(data=data)
 
 
 # Other Tools
@@ -295,20 +309,15 @@ TOOLS = 'box_zoom, box_select, reset'
 
 # Plot
 T = figure(title="Return On Investment", title_location="above",
-           plot_width=400, plot_height=100, tools=[TOOLS, Thover])
+           plot_width=400, plot_height=100, tools=[TOOLS])
 roiline = T.line(x='x', y='y', color="teal", line_width=4,
                  alpha=0.75, source=returnsource)
 capexbar = T.vbar(x='x', top='y', bottom=0, width=1, color="red",
                   alpha=0.75, source=capexspendsource, legend="CAPEX Spend")
-suscapbar = T.vbar(x='x', top='y', bottom=0, width=1, color="purple",
-                   alpha=0.75, source=suscapspendsource, legend="Sustaining Capital Spend")
-opexbar = T.vbar(x='x', top='y', bottom=0, width=1, color="firebrick",
-                 alpha=0.75, source=opexspendsource, legend="OPEX Spend")
-fuelbar = T.vbar(x='x', top='y', bottom=0, width=1, color="b",
-                 alpha=0.75, source=fuelspendsource, legend="Fuel Spend")
-otherbar = T.vbar(x='x', top='y', bottom=0, width=1, color="darkviolet",
-                  alpha=0.75, source=otherspendsource, legend="Other Spend")
-
+paybackbar = T.vbar(x='x', top='y', bottom=0, width=1, color="green",
+                  alpha=0.75, source=paybackyearsource, legend="Yearly Return")
+renderers = T.vbar_stack(yearcosts, x='years', width=0.9, color=colors, source=source,
+                         legend=[value(x) for x in yearcosts], name=yearcosts)
 
 # Format
 T.yaxis[0].formatter = NumeralTickFormatter(format="$0,000")
@@ -425,6 +434,11 @@ def update_data(attrname, old, new):
     Construction_time = float(Construction_time_str)
     Net = Uptime * (365 * (facilitysz * (Oil_Price_CAD - (Fuel + Opp_Cost +
                                                           Sus_Cap + Royalties + Taxes + Emission_Comp + Transport))))
+    suscapyear = Uptime * (365 * (facilitysz * (Sus_Cap)))
+    opexyear = Uptime * (365 * (facilitysz * (Opp_Cost)))
+    fuelyear = Uptime * (365 * (facilitysz * (Fuel)))
+    otheryear = Uptime * \
+        (365 * (facilitysz * (Royalties + Taxes + Emission_Comp + Transport)))
     Year = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15,
             16, 17, 18, 19, 20, 21, 22, 23, 24, 25]
 
@@ -544,49 +558,61 @@ def update_data(attrname, old, new):
                (y4 * 18), baseyears + (y4 * 19),
                baseyears + (y4 * 20), baseyears + (y4 * 21), baseyears + (y4 * 22)]
 
-    suscapspend = [s0, s1, s2, suscapyear, suscapyear,
-                   suscapyear, suscapyear, suscapyear,
-                   suscapyear, suscapyear, suscapyear,
-                   suscapyear, suscapyear, suscapyear,
-                   suscapyear, suscapyear, suscapyear,
-                   suscapyear, suscapyear, suscapyear,
-                   suscapyear, suscapyear, suscapyear,
-                   suscapyear, suscapyear, suscapyear]
+    suscapspend = [-s0, -s1, -s2, -suscapyear, -suscapyear,
+                   -suscapyear, -suscapyear, -suscapyear,
+                   -suscapyear, -suscapyear, -suscapyear,
+                   -suscapyear, -suscapyear, -suscapyear,
+                   -suscapyear, -suscapyear, -suscapyear,
+                   -suscapyear, -suscapyear, -suscapyear,
+                   -suscapyear, -suscapyear, -suscapyear,
+                   -suscapyear, -suscapyear, -suscapyear]
 
-    opexspend = [o0, o1, o2, opexyear, opexyear,
-                 opexyear, opexyear, opexyear,
-                 opexyear, opexyear, opexyear,
-                 opexyear, opexyear, opexyear,
-                 opexyear, opexyear, opexyear,
-                 opexyear, opexyear, opexyear,
-                 opexyear, opexyear, opexyear,
-                 opexyear, opexyear, opexyear]
+    opexspend = [-o0, -o1, -o2, -opexyear, -opexyear,
+                 -opexyear, -opexyear, -opexyear,
+                 -opexyear, -opexyear, -opexyear,
+                 -opexyear, -opexyear, -opexyear,
+                 -opexyear, -opexyear, -opexyear,
+                 -opexyear, -opexyear, -opexyear,
+                 -opexyear, -opexyear, -opexyear,
+                 -opexyear, -opexyear, -opexyear]
 
-    fuelspend = [f0, f1, f2, fuelyear, fuelyear,
-                 fuelyear, fuelyear, fuelyear,
-                 fuelyear, fuelyear, fuelyear,
-                 fuelyear, fuelyear, fuelyear,
-                 fuelyear, fuelyear, fuelyear,
-                 fuelyear, fuelyear, fuelyear,
-                 fuelyear, fuelyear, fuelyear,
-                 fuelyear, fuelyear, fuelyear]
+    fuelspend = [-f0, -f1, -f2, -fuelyear, -fuelyear,
+                 -fuelyear, -fuelyear, -fuelyear,
+                 -fuelyear, -fuelyear, -fuelyear,
+                 -fuelyear, -fuelyear, -fuelyear,
+                 -fuelyear, -fuelyear, -fuelyear,
+                 -fuelyear, -fuelyear, -fuelyear,
+                 -fuelyear, -fuelyear, -fuelyear,
+                 -fuelyear, -fuelyear, -fuelyear]
 
-    otherspend = [ot0, ot1, ot2, otheryear, otheryear,
-                  otheryear, otheryear, otheryear,
-                  otheryear, otheryear, otheryear,
-                  otheryear, otheryear, otheryear,
-                  otheryear, otheryear, otheryear,
-                  otheryear, otheryear, otheryear,
-                  otheryear, otheryear, otheryear,
-                  otheryear, otheryear, otheryear]
-    capexspend = [-y0, -y1, -y2]
+    otherspend = [-ot0, -ot1, -ot2, -otheryear, -otheryear,
+                  -otheryear, -otheryear, -otheryear,
+                  -otheryear, -otheryear, -otheryear,
+                  -otheryear, -otheryear, -otheryear,
+                  -otheryear, -otheryear, -otheryear,
+                  -otheryear, -otheryear, -otheryear,
+                  -otheryear, -otheryear, -otheryear,
+                  -otheryear, -otheryear, -otheryear]
+    paybackyear = [0, 0, y2, y3, y4,
+                   y4, y4, y4,
+                   y4, y4, y4,
+                   y4, y4, y4,
+                   y4, y4, y4,
+                   y4, y4, y4,
+                   y4, y4, y4,
+                   y4, y4, y4]
+    capexspend = [y0, y1]
     # New sources
     returnsource.data = dict(x=Year, y=Payback)
     capexspendsource.data = dict(x=firstfewyears, y=capexspend)
-    suscapspendsource.data = dict(x=Year, y=suscapspend)
-    opexspendsource.data = dict(x=Year, y=opexspend)
-    fuelspendsource.data = dict(x=Year, y=fuelspend)
-    otherspendsource.data = dict(x=Year, y=otherspend)
+    paybackyearsource.data = dict(x=Year, y=paybackyear)
+
+    data = {'years' : Year,
+            'Sustaining Capital Spend' : suscapspend,
+            'OPEX Spend' : opexspend,
+            'Fuel Spend' : fuelspend,
+            'Other Spend' : otherspend}
+    source.data = data
 
     # IRR Graph Update
     irrval = round(np.irr([y0, y1, y2, y3, y4, y4, y4, y4, y4, y4, y4, y4, y4,
